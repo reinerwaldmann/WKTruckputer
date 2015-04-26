@@ -1,0 +1,1 @@
+if (typeof pluso != "undefined") pluso.setCounter("0", "http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html", undefined, undefined, undefined);

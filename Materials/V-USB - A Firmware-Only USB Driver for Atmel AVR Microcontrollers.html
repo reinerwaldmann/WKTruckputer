@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="viewport" content="width=840">
+<title>V-USB - A Firmware-Only USB Driver for Atmel AVR Microcontrollers</title>
+
+<link rel="stylesheet" href="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/common.css" type="text/css">
+<link rel="stylesheet" href="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/style.css" type="text/css">
+<!--[if IE]>
+<link rel="stylesheet" href="/resources/css/explorer.css" type="text/css" />
+<![endif]-->
+
+<!--[if lt IE 7.]>
+<script defer type="text/javascript" src="/resources/javascript/pngfix.js"></script>
+<![endif]-->
+
+
+<link rel="icon" href="https://www.obdev.at/favicon.png" type="image/png">
+<link rel="shortcut icon" href="https://www.obdev.at/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://www.obdev.at/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://www.obdev.at/atom_feed.xml">
+<script type="text/javascript">/*<![CDATA[*/
+	function ODMaillink(address, subject)
+	{
+		if (subject) subject = "?subject=" + subject;
+		document.location = "mailto:" + address.replace(/:/, "@") + subject;
+	}
+/*]]>*/</script>
+
+
+<script type="text/javascript" src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/jquery-1.js"></script>
+<script type="text/javascript" src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/od-image-replacer.js"></script>
+
+</head>
+
+<body>
+<div id="pageWrapper">
+<div id="pageHeader">
+<ul>
+<li><a href="https://blog.obdev.at/">blog</a></li>
+<li><a href="https://www.obdev.at/products/index.html">products</a></li>
+<li><a href="https://www.obdev.at/shop/index.html">shop</a></li>
+<li><a href="https://www.obdev.at/support/index.html?product=OP">support</a></li>
+</ul>
+<div class="logo"><a href="https://www.obdev.at/index.html"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/obdev-logo.png" alt="" class="hires" border="0" height="28" width="149"></a></div>
+</div>
+
+
+
+
+<div class="box pageContent">
+    
+	<div class="oldContent">
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr>
+					<td valign="top" width="99%"><div class="left-column">
+
+<div class="page-heading">
+	<h2>V-USB Reference Implementations</h2>
+	<h1>HIDKeys - An Example USB HID</h1>
+</div>
+
+<div class="introduction">
+	HIDKeys demonstrates how V-USB can be used to implement the USB Human 
+Interface Device (HID) class specification. It’s a simple USB keyboard 
+with up to 17 keys.
+</div>
+
+<div style="text-align:center">
+	<img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/hidkeys.gif" alt="" border="0" height="205" width="344">
+</div>
+
+<h2>Why a HID?</h2>
+
+<p>Implementing a USB device which conforms to the HID specification is 
+particularly useful if you develop for Windows: Every vendor class 
+device requires a kernel driver, but HID class devices do not. This 
+means that you don’t need an installer, the application can simply be 
+copied to the disk or even be started from a CD.</p>
+
+<p>This example demonstrates the device part of HID only. Since it 
+implements a keyboard, no special software is needed on the host 
+computer. In practice, you usually need a specialized software which 
+controls the device. There are many examples available which show how to
+ communicate between the host software and a HID on Windows, e.g. on <a href="http://www.lvr.com/hidpage.htm" target="_blank">Jan Alexon’s web page</a>. Our <a href="https://www.obdev.at/products/vusb/automator.html">Automator</a> project is one of them.</p>
+
+<p>If you are new to USB and don’t want to dig into the details of creating report descriptors, look at our <a href="https://www.obdev.at/products/vusb/powerswitch.html">PowerSwitch</a> example first. It is the most basic and straight-forward way of USB communication.</p>
+
+<h2>Download</h2>
+
+<div style="width:100%"><table class="download-table"><tbody><tr><th colspan="3">Download HIDKeys</th></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2012-12-08.tar.gz">HIDKeys.2012-12-08.tar.gz</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2012-12-08.tar.gz"><strong>Download</strong></a></td><td style="width:60px; color:#888">171 kB</td></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2012-12-08.zip">HIDKeys.2012-12-08.zip</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2012-12-08.zip"><strong>Download</strong></a></td><td style="width:60px; color:#888">200 kB</td></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2007-03-29.tar.gz">HIDKeys.2007-03-29.tar.gz</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2007-03-29.tar.gz"><strong>Download</strong></a></td><td style="width:60px; color:#888">138 kB</td></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2007-03-29.zip">HIDKeys.2007-03-29.zip</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2007-03-29.zip"><strong>Download</strong></a></td><td style="width:60px; color:#888">147 kB</td></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-03-14.tar.gz">HIDKeys.2006-03-14.tar.gz</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-03-14.tar.gz"><strong>Download</strong></a></td><td style="width:60px; color:#888">124 kB</td></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-03-14.zip">HIDKeys.2006-03-14.zip</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-03-14.zip"><strong>Download</strong></a></td><td style="width:60px; color:#888">131 kB</td></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-02-07.tar.gz">HIDKeys.2006-02-07.tar.gz</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-02-07.tar.gz"><strong>Download</strong></a></td><td style="width:60px; color:#888">120 kB</td></tr><tr><td style="padding-left:16px"><a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-02-07.zip">HIDKeys.2006-02-07.zip</a></td><td align="right"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-arrow.gif" alt="" border="0"> <a href="https://www.obdev.at/downloads/vusb/HIDKeys.2006-02-07.zip"><strong>Download</strong></a></td><td style="width:60px; color:#888">126 kB</td></tr></tbody></table></div>
+
+
+<h2>Release Notes</h2>
+<h3>Release 2012-12-08</h3>
+<ul>
+    <li>Updated to newest version of v-usb.</li>
+    <li>Fixed errors reported by gcc 4.6.2.</li>
+</ul>
+
+</div></td><td class="right-column-td"><div class="right-column">
+
+<div class="rbox quick-links first-child">
+<h3>V-USB</h3>
+<div class="separator"></div>
+<div class="content">
+
+	<h5>Information</h5>
+	<ul>
+		<li><a href="https://www.obdev.at/products/vusb/index.html">Overview</a></li>
+		<li><a href="https://www.obdev.at/products/vusb/benefits.html">Benefits</a></li>
+		<li><a href="https://www.obdev.at/products/vusb/license.html">Licensing</a></li>
+		<li><a href="https://www.obdev.at/products/vusb/prjobdev.html">Reference Projects</a></li>
+		<li><a href="https://www.obdev.at/products/vusb/links.html">Links</a></li>
+	</ul>
+	<h5>Community Resources</h5>
+	<ul>
+		<li><a href="https://www.obdev.at/products/vusb/projects.html">Community Projects</a></li>
+		<li><a href="http://vusb.wikidot.com/">Documentation Wiki</a></li>
+        <li><a href="https://forums.obdev.at/viewforum.php?f=8">Forum</a></li>
+		<li><a href="https://www.obdev.at/products/vusb/feedback.html">Feedback</a></li>
+	</ul>
+<div style="text-align:center;margin-top:20px">
+<a href="https://www.obdev.at/products/vusb/download.html"><img src="V-USB%20-%20A%20Firmware-Only%20USB%20Driver%20for%20Atmel%20AVR%20Microcontrollers_files/download-only-button.gif" alt="Download" border="0" height="22" width="100"></a></div>
+</div>
+</div>
+
+
+<div class="white rbox">
+<h3>Related Information</h3>
+<div class="separator"></div>
+<div class="content">
+
+	<ul style="margin-bottom:0px; margin-top:0px">
+		<li><a href="https://www.obdev.at/articles/implementing-usb-1.1-in-firmware.html">Article: Implementing USB 1.1 in Firmware</a></li>
+		<li><a href="https://www.obdev.at/products/crosspack/index.html">CrossPack for AVR Development</a></li>
+	</ul>
+</div>
+</div>
+
+
+</div></td></tr></tbody></table>
+    </div>
+</div>
+
+<div id="pageFooter">
+	<div class="language"><strong>english</strong> | <a href="https://www.obdev.at/products/vusb/hidkeys-de.html">deutsch</a></div>	<div class="left">
+		Copyright © 2015 Objective Development Software GmbH&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.obdev.at/impressum.html">About Us</a><br>
+			</div>
+</div>
+
+
+</div>
+
+
+
+
+</body></html>

@@ -1,0 +1,1647 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html slick-uniqueid="3" xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru-ru" lang="ru-ru"><head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+  <!-- base href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" -->
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="keywords" content="микроконтроллеры, электроника, AVR, IAR AVR, WINAVR, CodeVision, программирование микроконтроллеров">
+  <meta name="rights" content="http://chipeanble.ru">
+  <meta name="title" content="Как подключить к микроконтроллеру кнопки">
+  <meta name="author" content="Pashgan">
+  <meta name="image" content="http://chipenable.ru">
+  <meta name="description" content="&amp;amp;nbsp;&amp;amp;nbsp; Почти ни одно изделие с микроконтроллером не обходится без кнопок. Тема эта уже избитая и во многом известная. Написанием этой статьи я н...">
+  <meta name="generator" content="Joomla! - Open Source Content Management">
+  <title>Как подключить к микроконтроллеру кнопки</title>
+  <link href="http://chipenable.ru/index.php/component/jcomments/feed/com_k2/13.html" rel="alternate" type="application/rss+xml" title="Как подключить к микроконтроллеру кнопки">
+  <link href="http://chipenable.ru/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+  <link rel="stylesheet" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/modal.css" type="text/css">
+  <link rel="stylesheet" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/k2.css" type="text/css">
+  <link rel="stylesheet" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/style_002.css" type="text/css">
+  <link rel="stylesheet" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/style.css" type="text/css">
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/watch.js" async="" type="text/javascript"></script><script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/ca-pub-9866788192129816.js" type="text/javascript" async=""></script><script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/ga.js" async="" type="text/javascript"></script><script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/mootools-core.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/core.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/mootools-more.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/modal.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/jquery.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/k2.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/openapi_002.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/jcomments-v2.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/ajax.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/script.js" type="text/javascript"></script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/punycode.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+		window.addEvent('domready', function() {
+
+			SqueezeBox.initialize({});
+			SqueezeBox.assign($$('a.modal'), {
+				parse: 'rel'
+			});
+		});
+var K2SitePath = '/';
+VK.init({apiId: 2452029, onlyWidgets: true});
+				function jc_vk_show_hide(show, hide, self){
+					document.getElementById('jc_vk_share_'+hide).style.display='none'; 
+					document.getElementById('jc_vk_share_'+show).style.display='block';
+					self.parentNode.className=show;
+				}
+
+				function getXmlHttp(){ 
+					var xmlhttp; 
+					try { 
+					xmlhttp = new ActiveXObject('Msxml2.XMLHTTP'); 
+					} catch (e) { 
+					try { 
+					xmlhttp = new ActiveXObject('Microsoft.XMLHTTP'); 
+					} catch (E) { 
+					xmlhttp = false; 
+					} 
+					} 
+					if (!xmlhttp && typeof XMLHttpRequest!='undefined') { 
+					xmlhttp = new XMLHttpRequest(); 
+					} 
+					return xmlhttp; 
+				   } 
+
+				   function addComment(num, last_comment, date, sign) { 
+
+					var xmlhttp = getXmlHttp() 
+					xmlhttp.open('GET', 'http://chipenable.ru/plugins/k2/jcomments/vk.php?id=13&num='+num, true); 
+					xmlhttp.onreadystatechange = function() { 
+					if (xmlhttp.readyState == 4) { 
+					if(xmlhttp.status == 200) { 
+					//alert(xmlhttp.responseText); 
+					 } 
+					} 
+					}; 
+					xmlhttp.send(null); 
+				    }                 
+
+				
+  </script>
+  <script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/openapi.js" type="text/javascript" charset="windows-1251"></script>
+
+  <link rel="stylesheet" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/system.css" type="text/css">
+  <link rel="stylesheet" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/general.css" type="text/css">
+
+  <link rel="stylesheet" type="text/css" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/template.css">
+  <!--[if IE 6]><link rel="stylesheet" href="/templates/icons003/gruenerapfel/css/template.ie6.css" type="text/css" media="screen" /><![endif]-->
+  <!--[if IE 7]><link rel="stylesheet" href="/templates/icons003/gruenerapfel/css/template.ie7.css" type="text/css" media="screen" /><![endif]-->
+  <link rel="stylesheet" type="text/css" href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/template-ic.css">
+  <script type="text/javascript" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/script_002.js"></script>
+		
+	<style type="text/css">
+	div.Header { height: 135px; }
+div.Header-jpeg { height: 135px; }
+	</style>
+	
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21108056-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/openapi_003.js"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: 2452029, onlyWidgets: true});
+</script>
+
+
+<script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/watch.js" charset="utf-8"></script><style type="text/css">.yap-Ya_sync_0-horizontal,.yap-Ya_sync_0-horizontal yatag{display:block!important;box-sizing:content-box!important}.yap-Ya_sync_0-horizontal,.yap-Ya_sync_0-horizontal a,.yap-Ya_sync_0-horizontal em,.yap-Ya_sync_0-horizontal img,.yap-Ya_sync_0-horizontal table,.yap-Ya_sync_0-horizontal tbody,.yap-Ya_sync_0-horizontal tr,.yap-Ya_sync_0-horizontal td{font-size:inherit!important;background:none!important;border:none!important;border-radius:0!important;border-spacing:0!important;border-collapse:collapse!important;box-sizing:content-box!important;clear:none!important;float:none!important;font-variant:normal!important;font-weight:400!important;height:auto!important;letter-spacing:normal!important;line-height:normal!important;margin:0!important;max-height:none!important;max-width:none!important;min-height:0!important;min-width:0!important;outline:none!important;padding:0!important;position:static!important;text-align:left!important;text-decoration:none!important;text-indent:0!important;text-transform:none!important;vertical-align:baseline!important;visibility:visible!important;word-spacing:normal!important;-webkit-border-radius:0!important;-moz-border-radius:0!important;-ms-border-radius:0!important;-o-border-radius:0!important}.yap-Ya_sync_0-horizontal table{display:table!important;empty-cells:hide!important;font-size:100%!important;table-layout:fixed!important}.yap-Ya_sync_0-horizontal td{display:table-cell!important;font-size:100%!important;vertical-align:middle!important}#yap-Ya_sync_0-horizontal .yap-layout_block_728x90 .yap-title-block{white-space:normal!important}#yap-Ya_sync_0-horizontal .yap-layout_block_vertical .yap-title-block{display:block!important}#yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-title-block,#yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-title-block{display:inline!important}#yap-Ya_sync_0-horizontal .yap-type-vertical .yap-logo{position:static!important}#yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-logo{top:0!important}.yap-Ya_sync_0-horizontal{overflow:visible!important;white-space:normal!important;width:100%!important;font-size:90%!important;color:#000000!important;font-family:inherit!important;position:relative!important;z-index:1!important}.yap-Ya_sync_0-horizontal .yap-layout{overflow:hidden!important;position:relative!important;z-index:1!important}.yap-Ya_sync_0-horizontal .yap-layout__logo{display:inline-block!important;background:#EEEEEE!important;padding-left:.7em!important;box-sizing:border-box!important}.yap-Ya_sync_0-horizontal .yap-layout__wrapper{background:transparent!important;border-width:0!important;border-color:#FEEBC8!important;border-style:solid!important;border-radius:0!important;position:relative!important;z-index:1!important;-webkit-border-radius:0!important;-moz-border-radius:0!important;-ms-border-radius:0!important;-o-border-radius:0!important}.yap-Ya_sync_0-horizontal .yap-layout__items{width:100%!important;border-collapse:collapse!important}.yap-Ya_sync_0-horizontal .yap-layout__item{vertical-align:top!important;background:transparent!important;border-width:0!important;border-color:#FEEBC8!important;border-style:solid!important;border-radius:0!important;-webkit-border-radius:0!important;-moz-border-radius:0!important;-ms-border-radius:0!important;-o-border-radius:0!important}.yap-Ya_sync_0-horizontal .yap-layout__outer{position:relative!important;z-index:1!important;zoom:1!important}.yap-Ya_sync_0-horizontal .yap-layout__inner{padding:.7em!important;overflow:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_type_wide .yap-layout__picture,.yap-Ya_sync_0-horizontal .yap-layout_type_medium .yap-layout__picture,.yap-Ya_sync_0-horizontal .yap-layout_type_compatible .yap-layout__picture{float:left!important;padding-right:.7em!important}.yap-Ya_sync_0-horizontal .yap-layout_type_wide .yap-layout__content,.yap-Ya_sync_0-horizontal .yap-layout_type_medium .yap-layout__content{overflow:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_type_narrow .yap-layout__picture{padding-bottom:.7em!important;margin:0 auto!important}.yap-Ya_sync_0-horizontal .yap-layout_type_medium .yap-layout__picture{padding-right:.6em!important}.yap-Ya_sync_0-horizontal .yap-layout_type_medium .yap-layout__logo{padding-left:.6em!important}.yap-Ya_sync_0-horizontal .yap-layout_type_medium .yap-layout__inner{padding:.6em .1em .6em .6em!important}.yap-Ya_sync_0-horizontal .yap-layout_type_medium .yap-layout__warning{margin-right:.4em!important}.yap-Ya_sync_0-horizontal .yap-layout__body{margin-top:0.38em!important}.yap-Ya_sync_0-horizontal .yap-layout__sitelinks,.yap-Ya_sync_0-horizontal .yap-layout__schedule,.yap-Ya_sync_0-horizontal .yap-layout__contacts,.yap-Ya_sync_0-horizontal .yap-layout__warning{margin-top:.23em!important}.yap-Ya_sync_0-horizontal .yap-layout__age{vertical-align:text-top!important;display:inline-block!important;margin-top:-.2em!important;margin-left:.16em!important}.yap-Ya_sync_0-horizontal .yap-layout__adtune{display:none!important;position:absolute!important;right:1px!important;top:1px!important;cursor:pointer!important;z-index:10!important}.yap-Ya_sync_0-horizontal .yap-layout__item:hover .yap-layout__adtune{display:block!important}.yap-Ya_sync_0-horizontal .yap-layout__adtune-message{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout__item_abused{background:#fff!important}.yap-Ya_sync_0-horizontal .yap-layout__item_abused .yap-layout__inner,.yap-Ya_sync_0-horizontal .yap-layout__item_abused .yap-layout__inner *{visibility:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout__item_abused .yap-layout__adtune-message{display:block!important}.yap-Ya_sync_0-horizontal .yap-layout_block_vertical .yap-layout__items{border-spacing:0 0!important;margin-top:0!important;margin-bottom:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_vertical .yap-layout__item{border-bottom-width:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_vertical tr:last-child .yap-layout__item{border-bottom-width:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_horizontal .yap-layout__wrapper{margin-right:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_horizontal .yap-layout__items{border-spacing:!important;margin-left:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_horizontal .yap-layout__item{width:33.33%!important;border-right-width:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_horizontal .yap-layout__item:last-child{border-right-width:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_grid .yap-layout__wrapper{margin-right:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_grid .yap-layout__items{border-spacing:!important;margin:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_grid .yap-layout__item{width:66.67%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_grid .yap-layout__item_nth_1,.yap-Ya_sync_0-horizontal .yap-layout_block_grid .yap-layout__item_nth_2{border-bottom-width:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_grid .yap-layout__item_nth_1,.yap-Ya_sync_0-horizontal .yap-layout_block_grid .yap-layout__item_nth_3{border-right-width:!important}.yap-Ya_sync_0-horizontal{width:!important;height:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed{font-size:13px!important;width:px!important;height:px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed.yap-layout_invisible,.yap-Ya_sync_0-horizontal .yap-layout_block_fixed.yap-layout_invisible *{visibility:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed .yap-layout__items{height:100%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed .yap-layout__inner{padding:5px 1px 5px 5px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed .yap-layout__warning{margin-right:4px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed.yap-layout_type_wide .yap-layout__picture,.yap-Ya_sync_0-horizontal .yap-layout_block_fixed.yap-layout_type_medium .yap-layout__picture,.yap-Ya_sync_0-horizontal .yap-layout_block_fixed.yap-layout_type_compatible .yap-layout__picture{padding-right:5px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed.yap-layout_type_narrow .yap-layout__picture{padding-bottom:5px!important;position:relative!important;left:-2px!important}.yap-Ya_sync_0-horizontal .yap-layout_hide_sitelinks .yap-layout__sitelinks,.yap-Ya_sync_0-horizontal .yap-layout_hide_schedule .yap-layout__schedule,.yap-Ya_sync_0-horizontal .yap-layout_hide_contacts.yap-layout_hide_domain .yap-layout__contacts,.yap-Ya_sync_0-horizontal .yap-layout_hide_contacts .yap-contacts__item{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_hide_contacts .yap-contacts__item_domain{display:inline-block!important}.yap-Ya_sync_0-horizontal .yap-layout_hide_domain .yap-contacts__item_domain{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-vertical .yap-layout__logo{padding-left:5px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-vertical .yap-layout__wrapper{height:NaNpx!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-vertical .yap-layout__item{vertical-align:middle!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-horizontal .yap-layout__logo{position:absolute!important;left:0!important;top:0!important;overflow:hidden!important;padding:0!important;width:17px!important;height:100%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-horizontal .yap-layout__wrapper{margin-left:17px!important;width:NaNpx!important;height:NaNpx!important}.yap-Ya_sync_0-horizontal .yap-layout_block_728x90 .yap-layout__inner{padding:5px 1px 5px 5px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_728x90.yap-layout_text-inline .yap-layout__title,.yap-Ya_sync_0-horizontal .yap-layout_block_728x90.yap-layout_text-inline .yap-layout__body{display:inline!important}.yap-Ya_sync_0-horizontal .yap-layout_block_728x90.yap-layout_text-inline .yap-layout__title{margin-right:5px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_728x90.yap-layout_text-inline .yap-layout__body{margin-top:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_160x600 .yap-layout__inner{padding-right:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn{font-size:11px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn.yap-layout_size_1{font-size:10px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn.yap-layout_size_2{font-size:9px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-layout__age{margin-top:-.3em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-layout__age,.yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-layout__warning{font-size:12px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact{overflow:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__logo{float:left!important;margin-right:.5em!important;padding-left:.4em!important;position:relative!important;z-index:1!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__item{overflow:hidden!important;padding:.1539em 15px .1539em .1539em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__inner{padding:0!important;position:relative!important;z-index:1!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__inner,.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__title{overflow:hidden!important;text-overflow:ellipsis!important;-webkit-text-overflow:ellipsis!important;-moz-text-overflow:ellipsis!important;-ms-text-overflow:ellipsis!important;-o-text-overflow:ellipsis!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__title{white-space:nowrap!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__item_age_true .yap-layout__title{padding-right:3em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__title-domain{display:inline!important;padding-left:.4em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact.yap-layout_hide-title-domain .yap-layout__title-domain{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__age{position:absolute!important;right:0!important;top:0!important;margin:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__content{overflow:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__body{margin-top:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;-webkit-text-overflow:ellipsis!important;-moz-text-overflow:ellipsis!important;-ms-text-overflow:ellipsis!important;-o-text-overflow:ellipsis!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__adtune{position:absolute!important;right:2px!important;top:4px!important;z-index:1!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__item_abused .yap-layout__adtune{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__item_abused .yap-layout__logo,.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__item_abused .yap-layout__logo *{visibility:visible!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-layout__adtune-message{position:absolute!important;z-index:1!important;left:100px!important;right:0!important;top:0!important;height:100%!important;width:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row{white-space:nowrap!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__logo{float:none!important;display:inline-block!important;vertical-align:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__content{margin-left:.6em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__age,.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__content,.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__title,.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__body{display:inline!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__item_age_true .yap-layout__title{padding-right:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__title-domain{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__body,.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__body-domain{margin-left:.4em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__age{position:static!important;margin-left:.6em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__adtune{right:1px!important;top:50%!important;margin-top:-7px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-layout__inner{padding:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster{max-width:300px!important;min-width:200px!important;font-size:13px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__item{tap-highlight-color:rgba(0,0,0,0)!important;outline:none!important;-webkit-tap-highlight-color:rgba(0,0,0,0)!important;-moz-tap-highlight-color:rgba(0,0,0,0)!important;-ms-tap-highlight-color:rgba(0,0,0,0)!important;-o-tap-highlight-color:rgba(0,0,0,0)!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__item_picture_false{background-color:#fff!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__outer,.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__inner{overflow:hidden!important;position:relative!important;z-index:1!important;zoom:1!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__inner{padding:0!important;margin:7px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__content{position:relative!important;z-index:1!important;zoom:1!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__title,.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__slider,.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__warning{padding:9px!important;background:#fff!important;position:relative!important;z-index:3!important;margin:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__title{padding-right:25px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__age{margin-left:.5em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__body{margin:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__arrow{position:absolute!important;right:9px!important;bottom:10px!important;transition:opacity 300ms ease-in-out,bottom 300ms ease-in-out!important;opacity:.6!important;-webkit-transition:opacity 300ms ease-in-out,bottom 300ms ease-in-out!important;-moz-transition:opacity 300ms ease-in-out,bottom 300ms ease-in-out!important;-ms-transition:opacity 300ms ease-in-out,bottom 300ms ease-in-out!important;-o-transition:opacity 300ms ease-in-out,bottom 300ms ease-in-out!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__arrow path,.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__arrow path:hover{fill:#000000!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__adtune{z-index:4!important;display:block!important;position:absolute!important;right:7px!important;top:7px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__sitelinks{margin-top:.55em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__schedule,.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__contacts{margin-top:.63em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-contacts__domain{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__title-domain{margin-top:.23em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__title-domain{font-size:15px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__picture{float:none!important;display:block!important;padding:0!important;margin-bottom:0!important;margin-right:0!important;background-position:center center!important;background-repeat:no-repeat!important;background-size:contain!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)!important;border:none!important;position:absolute!important;z-index:2!important;left:50%!important;top:50%!important;-webkit-background-size:contain!important;-moz-background-size:contain!important;-ms-background-size:contain!important;-o-background-size:contain!important;-webkit-box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)!important;-moz-box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)!important;-ms-box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)!important;-o-box-shadow:inset 0 0 0 1px rgba(0,0,0,.1)!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__bg{position:absolute!important;z-index:1!important;width:200%!important;height:200%!important;left:-50%!important;top:-30%!important;opacity:.3!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__bg svg{width:100%!important;height:100%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__bg_firefox{background-repeat:no-repeat!important;background-size:contain!important;background-position:center center!important;filter:blur(4px)!important;-webkit-background-size:contain!important;-moz-background-size:contain!important;-ms-background-size:contain!important;-o-background-size:contain!important;-webkit-filter:blur(4px)!important;-moz-filter:blur(4px)!important;-ms-filter:blur(4px)!important;-o-filter:blur(4px)!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__bg_old-ie{filter:alpha(opacity=30)!important;text-align:center!important;height:!important;-webkit-filter:alpha(opacity=30)!important;-moz-filter:alpha(opacity=30)!important;-ms-filter:alpha(opacity=30)!important;-o-filter:alpha(opacity=30)!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__bg_old-ie img{display:inline-block!important;height:100%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__slider{z-index:2!important;box-shadow:0 -1px #fff!important;box-sizing:border-box!important;padding-top:0!important;-webkit-box-shadow:0 -1px #fff!important;-moz-box-shadow:0 -1px #fff!important;-ms-box-shadow:0 -1px #fff!important;-o-box-shadow:0 -1px #fff!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster.yap-layout_transition_true .yap-layout__slider{transition:transform 300ms ease-in-out,opacity 300ms ease-in-out!important;transform:translateY(-100%)!important;transform-origin:left top!important;opacity:0!important;-webkit-transition:-webkit-transform 300ms ease-in-out,opacity 300ms ease-in-out!important;-moz-transition:-moz-transform 300ms ease-in-out,opacity 300ms ease-in-out!important;-ms-transition:-ms-transform 300ms ease-in-out,opacity 300ms ease-in-out!important;-o-transition:-o-transform 300ms ease-in-out,opacity 300ms ease-in-out!important;-webkit-transform:translateY(-100%)!important;-moz-transform:translateY(-100%)!important;-ms-transform:translateY(-100%)!important;-o-transform:translateY(-100%)!important;-webkit-transform-origin:left top!important;-moz-transform-origin:left top!important;-ms-transform-origin:left top!important;-o-transform-origin:left top!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster.yap-layout_transition_true .yap-layout__item_picture_false .yap-layout__slider,.yap-Ya_sync_0-horizontal .yap-layout_block_poster.yap-layout_transition_true .yap-layout__item_hover .yap-layout__slider{transform:none!important;opacity:1!important;-webkit-transform:none!important;-moz-transform:none!important;-ms-transform:none!important;-o-transform:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__item_hover .yap-layout__arrow{bottom:-30px!important;opacity:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__item_abused{background:#fff!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__item_abused .yap-layout__bg{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster-horizontal{max-width:900px!important;min-width:600px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster-horizontal .yap-layout__outer,.yap-Ya_sync_0-horizontal .yap-layout_block_poster-horizontal .yap-layout__slider-inner,.yap-Ya_sync_0-horizontal .yap-layout_block_poster-horizontal .yap-layout__title{box-sizing:border-box!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50{font-size:11px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50.yap-layout_invisible,.yap-Ya_sync_0-horizontal .yap-layout_block_320x50.yap-layout_invisible *{visibility:visible!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__inner{padding:6px 0 0 8px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__touch,.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__touch:active,.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__body,.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__body:active{tap-highlight-color:rgba(0,0,0,0)!important;outline:none!important;-webkit-tap-highlight-color:rgba(0,0,0,0)!important;-moz-tap-highlight-color:rgba(0,0,0,0)!important;-ms-tap-highlight-color:rgba(0,0,0,0)!important;-o-tap-highlight-color:rgba(0,0,0,0)!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__body{padding-right:50px!important;margin-top:1px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__age{margin-top:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-layout__touch{position:absolute!important;right:5px!important;top:5px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50:hover .yap-title-block__text{color:#666666!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50:hover .yap-layout__touch circle{stroke:#666666!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50:hover .yap-layout__touch path{fill:#666666!important}.yap-Ya_sync_0-horizontal .yap-vk-main{display:block!important;font-family:Tahoma,Arial,Verdana,Lucida Sans,sans-serif!important;font-style:normal!important;font-weight:400!important;width:118px!important;padding:0!important;margin:0!important}.yap-Ya_sync_0-horizontal .yap-vk-main yatag{display:block!important}.yap-Ya_sync_0-horizontal .yap-vk-main img{border:0!important;display:inline-block!important}.yap-Ya_sync_0-horizontal .yap-vk-logo,.yap-Ya_sync_0-horizontal .yap-vk-logo *{color:#777!important;font-size:.91em!important;line-height:11px!important;font-weight:400!important;font-style:normal!important}.yap-Ya_sync_0-horizontal .yap-vk-logo{padding:3px 0 4px!important;text-align:center!important}.yap-Ya_sync_0-horizontal .yap-vk-main a.yap-vk-item,.yap-Ya_sync_0-horizontal .yap-vk-main a.yap-vk-item:hover,.yap-Ya_sync_0-horizontal .yap-vk-main a.yap-vk-item:visited{position:relative!important;display:block!important;padding:8px 3px 11px!important;text-decoration:none!important;color:#000!important;text-align:center!important;border-bottom:1px solid #DCE3E9!important}.yap-Ya_sync_0-horizontal .yap-vk-main a.yap-vk-item.yap-vk-item-1{border-top:1px solid #DCE3E9!important}.yap-Ya_sync_0-horizontal .yap-vk-title{color:#36638E!important;font-weight:700!important;word-wrap:break-word!important}.yap-Ya_sync_0-horizontal .yap-vk-domain{color:#777!important;font-size:.91em!important;padding-top:3px!important;word-wrap:break-word!important}.yap-Ya_sync_0-horizontal .yap-vk-image{padding-top:9px!important}.yap-Ya_sync_0-horizontal .yap-vk-body{padding-top:10px!important;word-wrap:break-word!important}.yap-Ya_sync_0-horizontal .yap-vk-warning,.yap-Ya_sync_0-horizontal .yap-vk-age{color:#777!important;font-size:.82em!important;line-height:130%!important;padding-top:10px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru{font-size:10px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__logo{padding:.4em .8em!important;font-size:120%!important;color:#666!important;background:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__logo em{font-style:normal!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__inner{padding:.4em .8em 1.2em!important;overflow:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__title{margin-bottom:.5em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__age{margin-top:0!important;vertical-align:top!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__body{margin-top:0!important;overflow:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__picture{padding-right:.6em!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__contacts,.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__warning{padding-top:.6em!important;margin-top:0!important;overflow:hidden!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru-vertical .yap-layout__contacts,.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__warning{clear:both!important;zoom:1!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-layout__adtune{right:3px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-body-text{font-size:120%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-domain,.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-contacts__item-link,.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-contacts__item-text{font-size:110%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-age,.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-warning{border-radius:0!important;font-size:100%!important;-webkit-border-radius:0!important;-moz-border-radius:0!important;-ms-border-radius:0!important;-o-border-radius:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-age{margin:0!important;line-height:1.4!important;font-size:105%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-contacts__item-link:hover{color:#758536!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-domain:hover{color:#758536!important}.yap-Ya_sync_0-horizontal .yap-logo-block{position:relative!important;z-index:1!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed .yap-logo-block{height:16px!important}.yap-Ya_sync_0-horizontal .yap-logo-block__text{font-family:Arial,sans-serif!important;font-size:87%!important;padding-right:4px!important;line-height:1.4!important;font-weight:400!important;color:#000!important;text-decoration:none!important}.yap-Ya_sync_0-horizontal .yap-logo-block__text em{font-weight:400!important;font-style:normal!important;vertical-align:baseline!important}.yap-Ya_sync_0-horizontal .yap-logo-block__arrow{position:absolute!important;z-index:1!important;right:-9px!important;top:0!important;width:9px!important;height:100%!important;background-image:url("data:image/gif,GIF89a%C8%00)%00%80%01%00%EE%EE%EE%FF%FF%FF!%F9%04%01%00%00%01%00%2C%00%00%00%00%C8%00)%00%00%02%AB%84%8F%A9%CB%ED%0F%A3%9C%B4%DA%1B%B2%DE%B7%FB%0F%86%E2%E8lf%40%A6%EA%CA%B6%D2%A9%B9%F2L%D7%14%9C%D9%FA%CE%CBx%0F%0C%0A-%BF%A1%F1%884%C0%92%CC%E6n%E9%8CJY%A7%A9%F5%0A%AAb%B7%DC%17%A7%0B%0E'L%E2%B2%F8kNc%D1%EA%B64%E6%8E%3B%E1%F2%3A2g%CF%0F%F1%FA~%0F%E5%17%A8%03(XhxhF%88%B8(%A2%C8%F8%88%E1%089%E9Ei%E9%25y%A9%89%40%B7%E9%A9%D4%F9%B9%C9%26zIV%3AJ%8A%0A%A9%B5J%D9%EA%FA%08%15%2B%0BK%7BXt%8B%98%AB%5B%88%93%D9%AB%F7%1B%EC%3BL%1C%F8%1BP%00%00%3B")!important;background-position:center right!important;background-repeat:no-repeat!important;margin-top:!important}.yap-Ya_sync_0-horizontal .yap-logo-fallback{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-horizontal .yap-logo-block{display:block!important;position:absolute!important;z-index:1!important;left:0!important;bottom:6px!important;width:0!important;height:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-horizontal .yap-logo-block__text{display:inline-block!important;transform:rotate(270deg)!important;transform-origin:left top!important;font-size:10px!important;line-height:17px!important;padding:0!important;-webkit-transform:rotate(270deg)!important;-moz-transform:rotate(270deg)!important;-ms-transform:rotate(270deg)!important;-o-transform:rotate(270deg)!important;-webkit-transform-origin:left top!important;-moz-transform-origin:left top!important;-ms-transform-origin:left top!important;-o-transform-origin:left top!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-horizontal .yap-logo-block__arrow{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed-horizontal .yap-logo-fallback{display:block!important;width:100%!important;height:100%!important;position:absolute!important;z-index:1!important;bottom:6px!important;left:0!important;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAABFCAMAAABE4oc2AAAAeFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVyEiIAAAAJ3RSTlMAByQoEAMKZBIN39RsQR8Zp3otFelUm42AX006tTLyxL1YzK6UiJ9zbzQkAAABa0lEQVQoz3WRWZLDIAxExR4bY/AW79kmGd3/hgMiTuVn+sN+pWqpEQAAr+CQeHXee0KOUaVM2DYfg3fpo8lQeqj6gsr77dEwom4wOMyasDJ3U2VDYea1I9J2CkOp81y1QThRcCgCuxLChIhHonD1m6pYHXLtWoC3kjD5Ag3zOC0vNCYFm9nMMTqiOiXlNsQH9pLY0ags1lw5QV1uAS+Saq0QXKgIPKk+Y4j9pL7WwK1KrvMJvlGg3UbDf2RsEzVfG7w4caRU5+bIG4ujqExG3sLcEXXo4P6+nYrm5pN5xW32DojRQ9VZ6WKkPv14rlipPHS5cPg84bExS8rl3Y5mJZK9+217mdPU9kkTQZQ5baG0LFUoR40ck4aUIiYmddyY8Ou8PU5WQ5Z2eBvSf9/b3dUyGbaAv7GNxMLnKeSNsX+P7qfx1Yzjs4hZl+VeLsvCovMGbAOSuCpm35tZ3eL7Rp6Ia2fzQj6db5bwB7VAGypfQp1XAAAAAElFTkSuQmCC) !important;background-position:center bottom!important;background-repeat:no-repeat!important}.yap-Ya_sync_0-horizontal .yap-layout_block_fixed .yap-logo-block__text{font-size:11px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-logo-block__text{font-size:10px!important;color:#666!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-logo__text{text-decoration:!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-logo__text:hover{text-decoration:!important}.yap-Ya_sync_0-horizontal .yap-picture-block__link,.yap-Ya_sync_0-horizontal .yap-picture-block__img{display:block!important}.yap-Ya_sync_0-horizontal .yap-title-block{display:inline!important}.yap-Ya_sync_0-horizontal .yap-title-block hl{vertical-align:baseline!important}.yap-Ya_sync_0-horizontal .yap-title-block__text{color:#000000!important;text-decoration:underline!important;font-weight:normal!important}.yap-Ya_sync_0-horizontal .yap-title-block__text:hover{color:#666666!important}.yap-Ya_sync_0-horizontal .yap-title-block__text,.yap-Ya_sync_0-horizontal .yap-title-block__favicon{display:inline!important;line-height:1.1!important;vertical-align:baseline!important}#yap-Ya_sync_0-horizontal .yap-title-block__text,#yap-Ya_sync_0-horizontal .yap-title-block__favicon{font-size:135%!important}.yap-Ya_sync_0-horizontal .yap-title-block__favicon{display:inline!important;padding-right:.3em!important;vertical-align:baseline!important}.yap-Ya_sync_0-horizontal .yap-title-block__favicon-img{display:inline-block!important;vertical-align:baseline!important;width:16px!important;height:16px!important}.yap-Ya_sync_0-horizontal .yap-title-block__favicon_scale_true .yap-title-block__favicon-img{width:1em!important;height:1em!important;max-width:16px!important;max-height:16px!important;vertical-align:middle!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-title-block__favicon-img{vertical-align:middle!important}#yap-Ya_sync_0-horizontal .yap-layout_block_fixed .yap-title-block__text,#yap-Ya_sync_0-horizontal .yap-layout_block_fixed .yap-title-block__favicon{font-size:!important}#yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-title-block__text,#yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-title-block__favicon{font-size:100%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-title-block__text{white-space:nowrap!important;font-weight:normal!important}#yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-title-block__text,#yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-title-block__favicon{font-size:118%!important;font-weight:700!important}#yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-title-block__favicon,#yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-title-block__text{font-size:150%!important}.yap-Ya_sync_0-horizontal .yap-layout_block_mailru .yap-title-block__favicon{margin-bottom:-2px!important}.yap-Ya_sync_0-horizontal .yap-body-text{display:inline!important;font-weight:400!important;line-height:1.2!important;text-decoration:none!important;color:#000000!important}.yap-Ya_sync_0-horizontal .yap-layout_block_320x50 .yap-body-text{font-size:10px!important;line-height:10px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-body-text wbr{display:none!important}.yap-Ya_sync_0-horizontal .yap-adtune__button{width:14px!important;height:14px!important}.yap-Ya_sync_0-horizontal .yap-adtune__image{width:8px!important;height:8px!important;margin:3px!important;opacity:.6!important}.yap-Ya_sync_0-horizontal .yap-adtune__image svg{display:block!important}.yap-Ya_sync_0-horizontal .yap-adtune__image polygon{fill:#000000!important}.yap-Ya_sync_0-horizontal .yap-adtune .yap-adtune__text{font:15px/15px Arial,sans-serif!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-adtune__text{position:relative!important;top:-2px!important}.yap-Ya_sync_0-horizontal .yap-adtune__tooltip{display:none!important;position:absolute!important;right:18px!important;top:-2px!important;max-width:120px!important;padding:1px 4px 2px!important;font:11px/14.7px Arial,sans-serif!important;color:#fff!important;background:#333!important}.yap-Ya_sync_0-horizontal .yap-adtune__button:hover .yap-adtune__tooltip{display:block!important}.yap-Ya_sync_0-horizontal .yap-adtune_touch_true .yap-adtune__button:hover .yap-adtune__tooltip{display:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-adtune__tooltip{top:0!important;padding:0 4px 1px!important}.yap-Ya_sync_0-horizontal .yap-adtune__tooltip:before,.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-adtune__tooltip:before{position:absolute!important;right:-4px!important;top:50%!important;margin-top:-4px!important;width:8px!important;height:8px!important;background:#333!important;transform:rotate(45deg)!important;transform-origin:center!important;content:""!important;-webkit-transform:rotate(45deg)!important;-moz-transform:rotate(45deg)!important;-ms-transform:rotate(45deg)!important;-o-transform:rotate(45deg)!important;-webkit-transform-origin:center!important;-moz-transform-origin:center!important;-ms-transform-origin:center!important;-o-transform-origin:center!important}.yap-Ya_sync_0-horizontal .yap-adtune_oldie_true .yap-adtune__tooltip:before{overflow:hidden!important;width:5px!important;height:11px!important;margin-top:-7px!important;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAALCAYAAAC3ZUeVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABMSURBVBjTYzA2Ni5hQAdAwX9GRkaJ6IL/gfgPEAegC4LwNyC2QRcE4Q9Ao/TQBf8DBY+iC74xNDTUQjHTxMTEGtnMX0ABL4LuxPARAEB/MGK8nMgKAAAAAElFTkSuQmCC") right center no-repeat!important}.yap-Ya_sync_0-horizontal .yap-adtune__tooltip-text{position:relative!important;color:#fff!important}.yap-Ya_sync_0-horizontal .yap-adtune-message{position:absolute!important;left:0!important;top:0!important;width:100%!important;height:100%!important;z-index:6!important}.yap-Ya_sync_0-horizontal .yap-adtune-message__table,.yap-Ya_sync_0-horizontal .yap-adtune-message__text{width:100%!important;height:100%!important}.yap-Ya_sync_0-horizontal .yap-adtune-message__text{vertical-align:middle!important;text-align:center!important;font-size:13px!important}.yap-Ya_sync_0-horizontal .yap-contacts__item{display:inline-block!important;vertical-align:baseline!important;padding-right:1em!important;font-size:100%!important;line-height:1.1!important}.yap-Ya_sync_0-horizontal .yap-contacts__item:last-child{padding-right:0!important}.yap-Ya_sync_0-horizontal .yap-contacts__phone{white-space:nowrap!important}.yap-Ya_sync_0-horizontal .yap-contacts__item-link,.yap-Ya_sync_0-horizontal .yap-contacts__item-text{display:inline!important;text-decoration:none!important;color:#758536!important}.yap-Ya_sync_0-horizontal .yap-contacts__item-link:hover{text-decoration:underline!important;color:#666666!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-contacts__item-link,.yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-contacts__item-text{font-weight:700!important}.yap-Ya_sync_0-horizontal .yap-domain{display:inline!important;color:#758536!important}.yap-Ya_sync_0-horizontal .yap-domain:hover{text-decoration:underline!important;color:#666666!important}.yap-Ya_sync_0-horizontal .yap-layout_block_compact .yap-domain:hover{text-decoration:none!important}.yap-Ya_sync_0-horizontal .yap-layout_block_msn .yap-domain{font-weight:700!important}.yap-Ya_sync_0-horizontal .yap-age{display:inline-block!important;font-size:70%!important;border:1px solid #dddcda!important;border-radius:4px!important;padding:0 .15em!important;text-align:center!important;line-height:1.6!important;border-color:#D8D8D8!important;background-color:#FFFFFF!important;-webkit-border-radius:4px!important;-moz-border-radius:4px!important;-ms-border-radius:4px!important;-o-border-radius:4px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-age{border-radius:0!important;-webkit-border-radius:0!important;-moz-border-radius:0!important;-ms-border-radius:0!important;-o-border-radius:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_row .yap-age{line-height:1.4!important}.yap-Ya_sync_0-horizontal .yap-warning{overflow:hidden!important;padding:.15em .3em!important;border:1px solid #dddcda!important;font-size:70%!important;line-height:1.1!important;border-radius:4px!important;border-color:#D8D8D8!important;background-color:#FFFFFF!important;-webkit-border-radius:4px!important;-moz-border-radius:4px!important;-ms-border-radius:4px!important;-o-border-radius:4px!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-warning{border-radius:0!important;-webkit-border-radius:0!important;-moz-border-radius:0!important;-ms-border-radius:0!important;-o-border-radius:0!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__item_picture_true .yap-warning{background-color:#FFFFFF!important;border-color:#FFFFFF!important;transition:border-color 200ms 100ms linear,background-color 200ms 100ms linear!important;-webkit-transition:border-color 200ms 100ms linear,background-color 200ms 100ms linear!important;-moz-transition:border-color 200ms 100ms linear,background-color 200ms 100ms linear!important;-ms-transition:border-color 200ms 100ms linear,background-color 200ms 100ms linear!important;-o-transition:border-color 200ms 100ms linear,background-color 200ms 100ms linear!important}.yap-Ya_sync_0-horizontal .yap-layout_block_poster .yap-layout__item_picture_true.yap-layout__item_hover .yap-warning{border-color:#D8D8D8!important;background-color:#FFFFFF!important}.yap-Ya_sync_0-horizontal .yap-sitelinks__link{vertical-align:middle!important;display:inline-block!important;margin-right:1em!important;font-weight:400!important;color:#000000!important;text-decoration:underline!important}.yap-Ya_sync_0-horizontal .yap-sitelinks__link:hover{color:#666666!important}.yap-Ya_sync_0-horizontal .yap-sitelinks__link:last-child{margin-right:0!important}.yap-Ya_sync_0-horizontal .yap-touch circle{stroke:#000000!important}.yap-Ya_sync_0-horizontal .yap-touch path{fill:#000000!important}.yap-Ya_sync_0-horizontal .yap-touch:hover circle{stroke:#666666!important}.yap-Ya_sync_0-horizontal .yap-touch:hover path{fill:#666666!important}</style></head>
+<body><div style="position: absolute; top: -10000px;" id="vk_api_transport"></div>
+
+    <div class="PageBackgroundGradient"></div>
+<div class="PageBackgroundGlare">
+    <div class="PageBackgroundGlareImage"></div>
+</div>
+<div class="Main">
+<div class="Sheet">
+    <div class="Sheet-tl"></div>
+    <div class="Sheet-tr"></div>
+    <div class="Sheet-bl"></div>
+    <div class="Sheet-br"></div>
+    <div class="Sheet-tc"></div>
+    <div class="Sheet-bc"></div>
+    <div class="Sheet-cl"></div>
+    <div class="Sheet-cr"></div>
+    <div class="Sheet-cc"></div>
+    <div class="Sheet-body">
+    
+
+
+<div class="Header">
+  <div class="Header-jpeg"></div>
+    
+
+	<div class="logo">
+	<img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/logo.png">
+	</div>
+	<div class="logobanner">
+	<div class="bannergroup">
+
+
+</div>
+
+	</div>
+
+</div>
+
+
+
+<div id="chip_menu_search_wrapper">
+<form action="/index.php/how-connection.html" method="post">
+	<div class="search chipsearch">
+		<input name="searchword" id="mod-search-searchword" maxlength="20" class="inputbox" size="20" value="Поиск по сайту..." onblur="if (this.value=='') this.value='Поиск по сайту...';" onfocus="if (this.value=='Поиск по сайту...') this.value='';" type="text"><input value="Искать" class="search_button" onclick="this.form.searchword.focus();" type="submit">	<input name="task" value="search" type="hidden">
+	<input name="option" value="com_search" type="hidden">
+	<input name="Itemid" value="9" type="hidden">
+	</div>
+</form>
+
+<ul class="menu-mainmenu">
+<li class="item-172"><a href="http://chipenable.ru/">Главная</a></li><li class="item-207"><a href="http://chipenable.ru/index.php/forum.html">Форум</a></li><li class="item-205"><a href="http://chipenable.ru/index.php/contacts.html">Контакты</a></li><li class="item-232"><a href="http://vk.com/chipenable">Группа</a></li></ul>
+
+</div>
+<div style="clear:both"></div>
+
+<div class="contentLayout">
+<div class="sidebar1"><div class="Block modulesuf">
+    <div class="Block-tl"></div>
+    <div class="Block-tr"></div>
+    <div class="Block-bl"></div>
+    <div class="Block-br"></div>
+    <div class="Block-tc"></div>
+    <div class="Block-bc"></div>
+    <div class="Block-cl"></div>
+    <div class="Block-cr"></div>
+    <div class="Block-cc"></div>
+    <div class="Block-body">
+
+<div class="BlockHeader">
+    <div class="l"></div>
+    <div class="r"></div>
+    <div class="header-tag-icon">
+        <div class="t">
+Разделы</div>
+    </div>
+</div>
+<div class="BlockContent">
+    <div class="BlockContent-cc"></div>
+    <div class="BlockContent-body">
+
+
+<ul class="menu">
+<li class="item-179"><a href="http://chipenable.ru/index.php/currently-news-chipenable.html">Новости</a></li><li class="item-230"><a href="http://chipenable.ru/index.php/embedded-programming.html">Эмбед программинг</a></li><li class="item-4"><a href="http://chipenable.ru/index.php/programming-avr.html">Программирование AVR</a></li><li class="item-233"><a href="http://chipenable.ru/index.php/programmirovanie-arm.html">Программирование ARM</a></li><li class="item-30"><a href="http://chipenable.ru/index.php/instruments-technologies.html">Инструменты/технологии</a></li><li class="item-9 current active"><a href="http://chipenable.ru/index.php/how-connection.html">Как подключить</a></li><li class="item-231"><a href="http://chipenable.ru/index.php/electronic-components.html">Компоненты</a></li><li class="item-29"><a href="http://chipenable.ru/index.php/rtos.html">RTOS</a></li><li class="item-2"><a href="http://chipenable.ru/index.php/iar-embedded-workbench.html">Софт</a></li><li class="item-3"><a href="http://chipenable.ru/index.php/projects-avr.html">Проекты</a></li><li class="item-206"><a href="http://chipenable.ru/index.php/sitemap.html">Карта сайта</a></li><li class="item-21"><a href="http://chipenable.ru/index.php/links.html">Ссылки</a></li></ul>
+
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<div class="Block modulesuf">
+    <div class="Block-tl"></div>
+    <div class="Block-tr"></div>
+    <div class="Block-bl"></div>
+    <div class="Block-br"></div>
+    <div class="Block-tc"></div>
+    <div class="Block-bc"></div>
+    <div class="Block-cl"></div>
+    <div class="Block-cr"></div>
+    <div class="Block-cc"></div>
+    <div class="Block-body">
+
+<div class="BlockHeader">
+    <div class="l"></div>
+    <div class="r"></div>
+    <div class="header-tag-icon">
+        <div class="t">
+Файлы</div>
+    </div>
+</div>
+<div class="BlockContent">
+    <div class="BlockContent-cc"></div>
+    <div class="BlockContent-body">
+
+
+<ul class="menu">
+<li class="item-14"><a href="http://chipenable.ru/index.php/useful-soft.html">Полезный софт</a></li><li class="item-15"><a href="http://chipenable.ru/index.php/library-for-iar.html">Си библиотеки для AVR</a></li><li class="item-16"><a href="http://chipenable.ru/index.php/files-for-lessons-iar-avr.html">Проекты для IAR AVR</a></li><li class="item-26"><a href="http://chipenable.ru/index.php/files-for-lessons-winavr.html">Проекты для WINAVR</a></li><li class="item-27"><a href="http://chipenable.ru/index.php/files-codevision.html">Проекты для CodeVision</a></li><li class="item-228"><a href="http://chipenable.ru/index.php/proekty-dlya-atmelstudio6.html">Проекты для AtmelStudio6</a></li><li class="item-28"><a href="http://chipenable.ru/index.php/projects-proteus.html">Проекты для Proteus`a</a></li></ul>
+
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<div class="Block modulesuf">
+    <div class="Block-tl"></div>
+    <div class="Block-tr"></div>
+    <div class="Block-bl"></div>
+    <div class="Block-br"></div>
+    <div class="Block-tc"></div>
+    <div class="Block-bc"></div>
+    <div class="Block-cl"></div>
+    <div class="Block-cr"></div>
+    <div class="Block-cc"></div>
+    <div class="Block-body">
+
+<div class="BlockHeader">
+    <div class="l"></div>
+    <div class="r"></div>
+    <div class="header-tag-icon">
+        <div class="t">
+Войти</div>
+    </div>
+</div>
+<div class="BlockContent">
+    <div class="BlockContent-cc"></div>
+    <div class="BlockContent-body">
+
+<script type="text/javascript">
+//<![CDATA[
+VK.init({
+	apiId: 2452029});
+function getUsername(data){
+	return "";}
+//]]>
+</script>
+<style type="text/css">
+#vk_auth iframe{
+	width:200px!important;
+}
+</style>
+<form action="/index.php/how-connection.html" method="post" name="login" id="form-login">
+	<fieldset class="input">
+	<p id="form-login-username">
+		<label for="modlgn_username">Логин</label><br>
+		<input id="modlgn_username" name="username" class="inputbox" alt="username" size="18" type="text">
+	</p>
+	<p id="form-login-password">
+		<label for="modlgn_passwd">Пароль</label><br>
+		<input id="modlgn_passwd" name="password" class="inputbox" size="18" alt="password" type="password">
+	</p>
+		<p id="form-login-remember">
+		<label for="modlgn_remember">Запомнить меня</label>
+		<input id="modlgn_remember" name="remember" class="inputbox" value="yes" alt="Запомнить меня" onclick="toggleRemember(this)" type="checkbox">
+	</p>
+		<input name="Submit" class="button" value="Войти" type="submit">
+	</fieldset>
+	<input name="option" value="com_users" type="hidden">
+	<input name="task" value="user.login" type="hidden">
+	<input name="return" value="L2luZGV4LnBocC9pdGVtbGlzdC8=" type="hidden">
+	<input name="c67ab94d458651cbb725c8630e0d8630" value="1" type="hidden"></form>
+<a href="javascript:void(0);" onclick="vk_login();return false;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/vk.jpg"></a>
+<form name="vklogin" method="post" action="/index.php/component/vklogin/">
+	<input name="name" value="" type="hidden">
+	<input name="username" value="" type="hidden">
+	<input name="option" value="com_vklogin" type="hidden">
+	<input name="jomsocial[uid]" value="" type="hidden">
+	<input name="jomsocial[first_name]" value="" type="hidden">
+	<input name="jomsocial[last_name]" value="" type="hidden">
+	<input name="jomsocial[nickname]" value="" type="hidden">
+	<input name="jomsocial[sex]" value="" type="hidden">
+	<input name="jomsocial[bdate]" value="" type="hidden">
+	<input name="jomsocial[city]" value="" type="hidden">
+	<input name="jomsocial[country]" value="" type="hidden">
+	<input name="jomsocial[timezone]" value="" type="hidden">
+	<input name="jomsocial[photo]" value="" type="hidden">
+	<input name="jomsocial[photo_medium]" value="" type="hidden">
+	<input name="jomsocial[photo_big]" value="" type="hidden">
+	<input name="jomsocial[home_phone]" value="" type="hidden">
+	<input name="jomsocial[mobile_phone]" value="" type="hidden">
+	<input name="jomsocial[university_name]" value="" type="hidden">
+	<input name="jomsocial[faculty_name]" value="" type="hidden">
+	<input name="jomsocial[graduation]" value="" type="hidden">
+	<input name="jomsocial[photo_rec]" value="" type="hidden">
+	<input name="jomsocial[photo_medium_rec]" value="" type="hidden">
+	<input name="domain" value="" type="hidden">
+	<input name="vkremember" value="" id="vkremember" type="hidden">
+	<input name="photo_rec" value="" type="hidden">
+	<input name="hash" value="" type="hidden">
+	<input name="return" value="L2luZGV4LnBocC9pdGVtbGlzdC8=" type="hidden">
+</form>
+	<ul>
+		<li>
+			<a href="http://chipenable.ru/index.php/component/users/?view=reset">
+			Забыли пароль?</a>
+		</li>
+		<li>
+			<a href="http://chipenable.ru/index.php/component/users/?view=remind">
+			Забыли логин?</a>
+		</li>
+				<li>
+			<a href="http://chipenable.ru/index.php/component/users/?view=registration">
+				Регистрация</a>
+		</li>
+			</ul>
+	
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<div class="Block modulesuf">
+    <div class="Block-tl"></div>
+    <div class="Block-tr"></div>
+    <div class="Block-bl"></div>
+    <div class="Block-br"></div>
+    <div class="Block-tc"></div>
+    <div class="Block-bc"></div>
+    <div class="Block-cl"></div>
+    <div class="Block-cr"></div>
+    <div class="Block-cc"></div>
+    <div class="Block-body">
+
+<div class="BlockHeader">
+    <div class="l"></div>
+    <div class="r"></div>
+    <div class="header-tag-icon">
+        <div class="t">
+Реклама</div>
+    </div>
+</div>
+<div class="BlockContent">
+    <div class="BlockContent-cc"></div>
+    <div class="BlockContent-body">
+
+<center><script async="" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/adsbygoogle.js"></script>
+<!-- test3 -->
+<ins data-adsbygoogle-status="done" class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-9866788192129816" data-ad-slot="2709976180"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="600" width="160"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</center>
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+<div class="Block modulesuf">
+    <div class="Block-tl"></div>
+    <div class="Block-tr"></div>
+    <div class="Block-bl"></div>
+    <div class="Block-br"></div>
+    <div class="Block-tc"></div>
+    <div class="Block-bc"></div>
+    <div class="Block-cl"></div>
+    <div class="Block-cr"></div>
+    <div class="Block-cc"></div>
+    <div class="Block-body">
+
+<div class="BlockHeader">
+    <div class="l"></div>
+    <div class="r"></div>
+    <div class="header-tag-icon">
+        <div class="t">
+Комментарии</div>
+    </div>
+</div>
+<div class="BlockContent">
+    <div class="BlockContent-cc"></div>
+    <div class="BlockContent-body">
+
+<div id="jcommentsModWrapper" class="jc">
+<div id="jcommentsModTabs">
+	<div class="jcspan" onclick="javascript:document.getElementById('jcommentsModWrapper').className='jc'">На сайте</div>
+	<div class="vkspan" onclick="javascript:document.getElementById('jcommentsModWrapper').className='vk'">Вконтакте</div>
+	<div style="clear:both"></div>
+</div>
+<div id="jcommentsModJcomments">
+<ul class="jcomments-latest">
+	
+			<li>
+				<h4>
+							<a href="http://chipenable.ru/index.php/projects-avr/item/98-miniatyurnyy-universalnyy-ik-pult-distantsionnogo-upravleniya.html">Миниатюрный универсальный ИК пульт дистанционного управления</a>
+					</h4>
+		
+		
+				<span class="author">Joanna</span>
+						<span class="date">26.04.2015 08:36</span>
+		
+		<div class="comment rounded ">
+					<div>
+				Thanks very interesting blog! Also visit my blog :: supplement: https://twitter.com/supplenutrition							</div>
+		</div>
+
+				<span class="comment-separator">&nbsp;</span>
+			</li>
+			<li>
+				<h4>
+							<a href="http://chipenable.ru/index.php/projects-avr/item/181-modul-priemnika-ik-signalov.html">Модуль приемника ИК сигналов на ATtiny</a>
+					</h4>
+		
+		
+				<span class="author">........</span>
+						<span class="date">24.04.2015 21:26</span>
+		
+		<div class="comment rounded ">
+					<div>
+				............							</div>
+		</div>
+
+				<span class="comment-separator">&nbsp;</span>
+			</li>
+			<li>
+				<h4>
+							<a href="http://chipenable.ru/index.php/projects-avr/item/98-miniatyurnyy-universalnyy-ik-pult-distantsionnogo-upravleniya.html">Миниатюрный универсальный ИК пульт дистанционного управления</a>
+					</h4>
+		
+		
+				<span class="author">Угон Камазофф</span>
+						<span class="date">22.04.2015 17:04</span>
+		
+		<div class="comment rounded ">
+					<div>
+				Ништяк тема, братишка! Я замастырил из энтой лентяйки сканнер авто сигналок. С корешем вощем пять ...							</div>
+		</div>
+
+				<span class="comment-separator">&nbsp;</span>
+			</li>
+			<li>
+				<h4>
+							<a href="http://chipenable.ru/index.php/programming-avr/item/77-si-biblioteka-dlya-raboty-s-1-wire-ustroystvami.html">Си библиотека для работы с 1-Wire устройствами</a>
+					</h4>
+		
+		
+				<span class="author">Vol-Y.I.P</span>
+						<span class="date">20.04.2015 14:04</span>
+		
+		<div class="comment rounded ">
+					<div>
+				Привет Всем!!! Такая ошибка:"undefin ed reference to `OWI_Init'" Atmel Studio 6.2 В чем может быть ...							</div>
+		</div>
+
+				<span class="comment-separator">&nbsp;</span>
+			</li>
+			<li>
+				<h4>
+							<a href="http://chipenable.ru/index.php/how-connection/item/155-pwm-regulator-dc-dvigatelya.html">Регулятор скорости двигателя постоянного тока</a>
+					</h4>
+		
+		
+				<span class="author">Митя 2</span>
+						<span class="date">15.04.2015 07:53</span>
+		
+		<div class="comment rounded ">
+					<div>
+				Добрый день! Мы с другом собрали схему драйвера двигателя. Хотели бы проконсультиров аться по подбору ...							</div>
+		</div>
+
+			</li>
+		</ul>
+</div>
+
+<div id="jcommentsModVkontakte">
+<div style="height: 0px; width: 100%; background: none repeat scroll 0% 0% transparent;" id="vk_commentsLatest"><iframe style="overflow: hidden; height: 0px;" id="vkwidget2" scrolling="no" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/widget_comments.html" name="fXDcce6a" frameborder="0" height="133" width="100%"></iframe></div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+window.onload = function () {
+ VK.Widgets.CommentsBrowse('vk_commentsLatest', {width: '', limit: 5, mini: 0});
+}
+</script>
+
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+</div>
+<div class="content">
+
+		<div class="moduletable">
+					<!-- Яндекс.Директ -->
+<script type="text/javascript">
+yandex_partner_id = 60420;
+yandex_site_bg_color = 'FFFFFF';
+yandex_stat_id = 1882612;
+yandex_ad_format = 'direct';
+yandex_font_size = 0.9;
+yandex_direct_type = 'horizontal';
+yandex_direct_limit = 3;
+yandex_direct_title_font_size = 2;
+yandex_direct_header_bg_color = 'EEEEEE';
+yandex_direct_title_color = '000000';
+yandex_direct_url_color = '758536';
+yandex_direct_text_color = '000000';
+yandex_direct_hover_color = '666666';
+yandex_direct_favicon = false;
+yandex_no_sitelinks = true;
+document.write('<sc'+'ript type="text/javascript" src="http://an.yandex.ru/system/context.js"></sc'+'ript>');
+</script><script type="text/javascript" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/context.js"></script><div id="Ya_sync_0"><yatag class="yap-Ya_sync_0-horizontal yap-reset" id="yap-Ya_sync_0-horizontal"><yatag class="yap-layout yap-main yap-font-size yap-layout_type_wide yap-layout_block_horizontal"><yatag class="yap-layout__logo yap-logo yap-logo-bg-color"><yatag class="yap-logo-block"><yatag class="yap-logo-block__position yap-logo-position"><a class="yap-logo-block__text yap-logo-text yap-logo-color yap-logo-bg-color" target="_blank" href="https://direct.yandex.ru/?partner">Яндекс.Директ</a></yatag><yatag class="yap-logo-block__arrow yap-logo-arrow"></yatag></yatag></yatag><yatag class="yap-layout__wrapper yap-list-wrapper yap-font-family yap-border-color"><table class="yap-layout__items yap-list"><tbody><tr><td data-id="586259739" class="yap-layout__item yap-item yap-border-color yap-layout__item_nth_1 yap-layout__item_picture_true yap-item-has-picture"><yatag class="yap-layout__outer"><yatag class="yap-layout__inner yap-item-inner"><yatag class="yap-layout__picture" style="width: 90px"><yatag class="yap-picture-block"><a target="_blank" href="http://an.yandex.ru/count/LZqDfzeJ24840000Zh8Np5C5XPJ03fK2cm5kGxS2Am68lMbOyG69bBMdcAmKlRwUj9_B0GITbyyOkkMlu-oefpqcfXwAkz4PBmAzjGakTGAg0QMkfky4lA8JvGIHjTrP20wFi04SImUVkQUF30MJ69bYGeoGY1EWa10dhv284vIVPIgdcGW1gB10MNC7fC0000000gmBhlLctSE-JfuK1R2nn3L00h41ie1IkPVF6Blh6gV8sAYPOS7__________m_5Zmzv5m00?test-tag=201329057&amp;stat-id=1075624436" class="yap-picture-block__link" style="width: 90px !important;height: 85px !important;"><img class="yap-picture-block__image yap-image" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/x90.jpeg" alt="" style="width: 90px !important;max-width: 90px !important;height: 85px !important;"></a></yatag></yatag><yatag class="yap-layout__content"><yatag class="yap-layout__title"><yatag class="yap-title-block yap-title"><a href="http://an.yandex.ru/count/LZqDfzeJ24840000Zh8Np5C5XPJ03fK2cm5kGxS2Am68lMbOyG69bBMdcAmKlRwUj9_B0GITbyyOkkMlu-oefpqcfXwAkz4PBmAzjGakTGAg0QMkfky4lA8JvGIHjTrP20wFi04SImUVkQUF30MJ69bYGeoGY1EWa10dhv284vIVPIgdcGW1gB10MNC7fC0000000gmBhlLctSE-JfuK1R2nn3L00h41ie1IkPVF6Blh6gV8sAYPOS7__________m_5Zmzv5m00?test-tag=201329057&amp;stat-id=1075624436" target="_blank" class="yap-title-block__text yap-title-text yap-title-font-size yap-title-color yap-title-hover-color">Продажа культиваторов TEXAS!</a></yatag></yatag><yatag class="yap-layout__body yap-text"><a class="yap-body-text yap-text-color"><wbr>Купите культиватор TEXAS со скидкой по Супер цене! Гарантия. Доставка!</a></yatag><yatag class="yap-layout__contacts"><yatag class="yap-contacts"><yatag class="yap-contacts__item yap-contacts__item_domain"><a class="yap-domain yap-domain-text" target="_blank" href="http://an.yandex.ru/count/LZqDfzeJ24840000Zh8Np5C5XPJ03fK2cm5kGxS2Am68lMbOyG69bBMdcAmKlRwUj9_B0GITbyyOkkMlu-oefpqcfXwAkz4PBmAzjGakTGAg0QMkfky4lA8JvGIHjTrP20wFi04SImUVkQUF30MJ69bYGeoGY1EWa10dhv284vIVPIgdcGW1gB10MNC7fC0000000gmBhlLctSE-JfuK1R2nn3L00h41ie1IkPVF6Blh6gV8sAYPOS7__________m_5Zmzv5m00?test-tag=201329057&amp;stat-id=1075624436">220-volt.ru</a></yatag></yatag></yatag></yatag><yatag class="yap-layout__adtune"><yatag class="yap-adtune yap-adtune_touch_false yap-adtune_oldie_false"><yatag class="yap-adtune__button yap-adtune-button"><yatag class="yap-adtune__image"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="8px" height="8px" viewBox="0 0 14 14"><polygon points="14,0.7 13.3,0 7,6.299 0.7,0 0,0.7 6.3,7 0,13.299 0.7,14 7,7.7 13.3,14 14,13.299 7.7,7"></polygon></svg></yatag><yatag class="yap-adtune__tooltip"><yatag class="yap-adtune__tooltip-text">Скрыть&nbsp;объявление</yatag></yatag></yatag></yatag></yatag></yatag><yatag class="yap-layout__adtune-message"><yatag class="yap-adtune-message"><table class="yap-adtune-message__table"><tbody><tr><td class="yap-adtune-message__text">Спасибо. Объявление скрыто.</td></tr></tbody></table></yatag></yatag></yatag></td><td data-id="486712691" class="yap-layout__item yap-item yap-border-color yap-layout__item_nth_2 yap-layout__item_picture_true yap-item-has-picture"><yatag class="yap-layout__outer"><yatag class="yap-layout__inner yap-item-inner"><yatag class="yap-layout__picture" style="width: 90px"><yatag class="yap-picture-block"><a target="_blank" href="http://an.yandex.ru/count/LZqDfwPv41m40000Zh8Np5C5XPJ03fK2cm5kGxS2Am4oYBjNQgm6YQtLWX2Oh1Izlfwqdyi119sPu06wvQ_ZxAYdFIQcV8gpLohG0RsrGlId0Qe1fQVujGEyh9Qr0v6rtLa83e-m0HnB1v-vfuyC1PCOcM92Z9Zx3BQGn0wra4uCe9y24A-O-mopa14Ij92c3fIVP2EdY-Mei41PSmUam0000002h0kkzMRTmxvEdXG5iB74DK02iG6oW5AvcU01k-iQfyZOg9bXmV__________3tyO?test-tag=201329057&amp;stat-id=1075624436" class="yap-picture-block__link" style="width: 90px !important;height: 90px !important;"><img class="yap-picture-block__image yap-image" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/y90.png" alt="" style="width: 90px !important;max-width: 90px !important;height: 90px !important;"></a></yatag></yatag><yatag class="yap-layout__content"><yatag class="yap-layout__title"><yatag class="yap-title-block yap-title"><a href="http://an.yandex.ru/count/LZqDfwPv41m40000Zh8Np5C5XPJ03fK2cm5kGxS2Am4oYBjNQgm6YQtLWX2Oh1Izlfwqdyi119sPu06wvQ_ZxAYdFIQcV8gpLohG0RsrGlId0Qe1fQVujGEyh9Qr0v6rtLa83e-m0HnB1v-vfuyC1PCOcM92Z9Zx3BQGn0wra4uCe9y24A-O-mopa14Ij92c3fIVP2EdY-Mei41PSmUam0000002h0kkzMRTmxvEdXG5iB74DK02iG6oW5AvcU01k-iQfyZOg9bXmV__________3tyO?test-tag=201329057&amp;stat-id=1075624436" target="_blank" class="yap-title-block__text yap-title-text yap-title-font-size yap-title-color yap-title-hover-color">Texas hobby 600tgr от&nbsp;21990&nbsp;р.</a></yatag></yatag><yatag class="yap-layout__body yap-text"><a class="yap-body-text yap-text-color"><wbr>Сравнение цен на мотоблоки и культиваторы в интернет-магазинах</a></yatag><yatag class="yap-layout__contacts"><yatag class="yap-contacts"><yatag class="yap-contacts__item yap-contacts__item_domain"><a class="yap-domain yap-domain-text" target="_blank" href="http://an.yandex.ru/count/LZqDfwPv41m40000Zh8Np5C5XPJ03fK2cm5kGxS2Am4oYBjNQgm6YQtLWX2Oh1Izlfwqdyi119sPu06wvQ_ZxAYdFIQcV8gpLohG0RsrGlId0Qe1fQVujGEyh9Qr0v6rtLa83e-m0HnB1v-vfuyC1PCOcM92Z9Zx3BQGn0wra4uCe9y24A-O-mopa14Ij92c3fIVP2EdY-Mei41PSmUam0000002h0kkzMRTmxvEdXG5iB74DK02iG6oW5AvcU01k-iQfyZOg9bXmV__________3tyO?test-tag=201329057&amp;stat-id=1075624436">e-katalog.ru</a></yatag></yatag></yatag></yatag><yatag class="yap-layout__adtune"><yatag class="yap-adtune yap-adtune_touch_false yap-adtune_oldie_false"><yatag class="yap-adtune__button yap-adtune-button"><yatag class="yap-adtune__image"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="8px" height="8px" viewBox="0 0 14 14"><polygon points="14,0.7 13.3,0 7,6.299 0.7,0 0,0.7 6.3,7 0,13.299 0.7,14 7,7.7 13.3,14 14,13.299 7.7,7"></polygon></svg></yatag><yatag class="yap-adtune__tooltip"><yatag class="yap-adtune__tooltip-text">Скрыть&nbsp;объявление</yatag></yatag></yatag></yatag></yatag></yatag><yatag class="yap-layout__adtune-message"><yatag class="yap-adtune-message"><table class="yap-adtune-message__table"><tbody><tr><td class="yap-adtune-message__text">Спасибо. Объявление скрыто.</td></tr></tbody></table></yatag></yatag></yatag></td><td data-id="299243555" class="yap-layout__item yap-item yap-border-color yap-layout__item_nth_3 yap-layout__item_picture_true yap-item-has-picture"><yatag class="yap-layout__outer"><yatag class="yap-layout__inner yap-item-inner"><yatag class="yap-layout__picture" style="width: 90px"><yatag class="yap-picture-block"><a target="_blank" href="http://an.yandex.ru/count/LZqDfp334Pi40000Zh8Np5C5XPJ03fK2cm5kGxS2Am4pYA-mC469d3v0cA-JlBwUj9_B0GITfW7w4Rhbh-FigASz9gO3YhE2OHq1lRcuTM01gW6bfvjE0xoeh0W3aRNTMGWEZxOVDya3dx0lsrSBanYPOaACaAOEe9284w-GfWwKa3iKfuALgA1xWmQam0000002h0kkzMRTmxvEdXG5iB74DK02iG6oW5AvfW7w4Rlh6gV8sAYPOS7__________mz-5W00?test-tag=201329057&amp;stat-id=1075624436" class="yap-picture-block__link" style="width: 90px !important;height: 90px !important;"><img class="yap-picture-block__image yap-image" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/y90.jpeg" alt="" style="width: 90px !important;max-width: 90px !important;height: 90px !important;"></a></yatag></yatag><yatag class="yap-layout__content"><yatag class="yap-layout__title"><yatag class="yap-title-block yap-title"><a href="http://an.yandex.ru/count/LZqDfp334Pi40000Zh8Np5C5XPJ03fK2cm5kGxS2Am4pYA-mC469d3v0cA-JlBwUj9_B0GITfW7w4Rhbh-FigASz9gO3YhE2OHq1lRcuTM01gW6bfvjE0xoeh0W3aRNTMGWEZxOVDya3dx0lsrSBanYPOaACaAOEe9284w-GfWwKa3iKfuALgA1xWmQam0000002h0kkzMRTmxvEdXG5iB74DK02iG6oW5AvfW7w4Rlh6gV8sAYPOS7__________mz-5W00?test-tag=201329057&amp;stat-id=1075624436" target="_blank" class="yap-title-block__text yap-title-text yap-title-font-size yap-title-color yap-title-hover-color">Бруски дёшево от&nbsp;производителя!!!</a></yatag></yatag><yatag class="yap-layout__body yap-text"><a class="yap-body-text yap-text-color"><wbr>от 4 руб/пог.м. Производство брусков в Новгородской области. Звоните!</a></yatag><yatag class="yap-layout__contacts"><yatag class="yap-contacts"><yatag class="yap-contacts__item yap-contacts__item_domain"><a class="yap-domain yap-domain-text" target="_blank" href="http://an.yandex.ru/count/LZqDfp334Pi40000Zh8Np5C5XPJ03fK2cm5kGxS2Am4pYA-mC469d3v0cA-JlBwUj9_B0GITfW7w4Rhbh-FigASz9gO3YhE2OHq1lRcuTM01gW6bfvjE0xoeh0W3aRNTMGWEZxOVDya3dx0lsrSBanYPOaACaAOEe9284w-GfWwKa3iKfuALgA1xWmQam0000002h0kkzMRTmxvEdXG5iB74DK02iG6oW5AvfW7w4Rlh6gV8sAYPOS7__________mz-5W00?test-tag=201329057&amp;stat-id=1075624436">складвагонки.рф</a></yatag><yatag class="yap-contacts__item"><a class="yap-contacts__item-link" target="_blank" href="http://an.yandex.ru/count/LZqDf_d8Z1q40000Zh8Np5C5XPJ03fK2cm5kGxS2Am4pYA-mC469d3v0cA-JlBwUj9_B0GITfW7w4Rhbh-FigASz9gO3YhE2OHq1lRcuTM01gWUbfvjE0xoeh0W3aRNTMGWEZxOVDya3dx0lsrSBanYPOaACaAOEe9284w-GfWwKa3iKfuALgA1xWmQam0000002h0kkzMRTmxvEdXG5iB74DK02iG6oW5AvfW7w4Rlh6gV8sAYPOS7__________mz-5W00?test-tag=201329057&amp;stat-id=1075624436">Адрес&nbsp;и&nbsp;телефон</a></yatag></yatag></yatag></yatag><yatag class="yap-layout__adtune"><yatag class="yap-adtune yap-adtune_touch_false yap-adtune_oldie_false"><yatag class="yap-adtune__button yap-adtune-button"><yatag class="yap-adtune__image"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="8px" height="8px" viewBox="0 0 14 14"><polygon points="14,0.7 13.3,0 7,6.299 0.7,0 0,0.7 6.3,7 0,13.299 0.7,14 7,7.7 13.3,14 14,13.299 7.7,7"></polygon></svg></yatag><yatag class="yap-adtune__tooltip"><yatag class="yap-adtune__tooltip-text">Скрыть&nbsp;объявление</yatag></yatag></yatag></yatag></yatag></yatag><yatag class="yap-layout__adtune-message"><yatag class="yap-adtune-message"><table class="yap-adtune-message__table"><tbody><tr><td class="yap-adtune-message__text">Спасибо. Объявление скрыто.</td></tr></tbody></table></yatag></yatag></yatag></td></tr></tbody></table></yatag></yatag></yatag></div><script type="text/javascript" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/context_static_r866.js" id="an.yandex.ru/resource/context_static_r866.js"></script><script type="text/javascript" charset="utf-8" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/60420"></script>		</div>
+			<div class="moduletable">
+					<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter280534 = new Ya.Metrika({id:280534,
+                    clickmap:true,
+                    trackLinks:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/280534" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->		</div>
+	
+<div class="Post">
+		    <div class="Post-body">
+		<div class="Post-inner">
+		
+				<div class="PostContent">
+		
+		
+
+<!-- Start K2 Item Layout -->
+<span id="startOfPageId13"></span>
+
+<div id="k2Container" class="itemView itemIsFeatured">
+
+	<!-- Plugins: BeforeDisplay -->
+	
+	<!-- K2 Plugins: K2BeforeDisplay -->
+	
+	<div class="itemHeader">
+
+	  	  <!-- Item title -->
+	  <h2 class="itemTitle">
+			
+	  	Как подключить к микроконтроллеру кнопки
+	  	
+	  </h2>
+	  
+
+
+		<div class="PostHeaderIcons metadata-icons">
+
+				<!-- Date created -->
+			28.09.2009 21:00 |
+						<!-- Item Author -->
+			Автор: <a rel="author" href="http://chipenable.ru/index.php/how-connection/itemlist/user/62-pashgan.html">Pashgan</a> |
+						<!-- Print Button -->
+		 <span class="metadata-icons">
+			<a rel="nofollow" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html?tmpl=component&amp;print=1" onclick="window.open(this.href,'printWindow','width=900,height=600,location=no,menubar=no,resizable=yes,scrollbars=yes'); return false;">
+			<img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/printButton.png" alt="Печать"></a>
+		  </span> 
+				
+				</div>
+
+  </div>
+
+  <!-- Plugins: AfterDisplayTitle -->
+  
+  <!-- K2 Plugins: K2AfterDisplayTitle -->
+  
+	
+	
+  <div class="itemBody">
+
+	  <!-- Plugins: BeforeDisplayContent -->
+	  
+	  <!-- K2 Plugins: K2BeforeDisplayContent -->
+	  
+	  	  <table><tbody><tr><td>
+	  	  	  	  <!-- Item fulltext -->
+	  <div class="itemFullText">
+	  	&nbsp;&nbsp; Почти ни одно изделие с микроконтроллером не обходится 
+без кнопок. Тема эта уже избитая и во многом известная. Написанием этой 
+статьи я не пытаюсь изобрести велосипед. Просто&nbsp; решил собрать всю 
+инфу по схемотехнике воедино. Думаю, что материал будет полезен 
+начинающим.Чтобы не сбивать вас с толку, на приведенных ниже рисунках не
+ показаны схемы питания, сброса и тактирования микроконтроллеров.<br>
+<h1>Способ первый - традиционный</h1>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/1.gif" alt="самый простой способ подключения кнопки к микроконтроллеру" title="самый простой способ подключения кнопки к микроконтроллеру" border="0" width="770"></div>
+</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;">&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp;&nbsp; рис1а&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; рис1б</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;">&nbsp;</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp; Если кнопок немного и дефицита выводов мк не наблюдается, используем традиционный способ подключения.</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Когда кнопка отпущена – вывод мк через резистор соединен с “плюсом” 
+питания (рис. 1а). Когда кнопка нажата – вывод мк соединен с землей. 
+Подтягивающий резистор R1&nbsp; ограничивает силу тока в цепи 
+переключателя. Если бы его не было, то при нажатии кнопки мы бы просто 
+закоротили наш источник питания.</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ В большинстве современных микроконтроллеров есть встроенные 
+подтягивающие резисторы, поэтому внешние можно не ставить (рис1б). <strong>В программе микроконтроллера нужно будет настроить используемый вывод на вход и включить внутренний подтягивающий резистор. </strong></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Что произойдет, если вывод микроконтроллера окажется в режиме выхода? 
+Это будет зависеть от состояния этого вывода. Если на выводе 
+“логический&nbsp; ноль” – ничего страшного не случиться, потому что - в 
+первом случае (рис1а) величина втекающего тока ограничена резистором R1,
+ а во втором случае (рис1б)&nbsp; никакой ток вообще не потечет. При 
+нажатии кнопки тоже ничего не случиться, поскольку разность потенциалов 
+между выводом и “землей” в этом случае будет равна нулю.</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Если же на выводе будет ”логическая единица” и кнопка окажется нажатой,
+ то через вывод микроконтроллера на землю потечет ток величиной в 
+несколько десятков миллиампер и вывод порта может “погореть”. Предельно 
+допустимый ток для вывода микроконтролера AVR согласно документации 
+равен 40 мА. Поэтому иногда нелишним бывает поставить между выводом мк и
+ кнопкой резистор номиналом в несколько сотен ом, например 330 (рис 1с).
+ Так, например, подключены кнопки на отладочной плате STK500. Это 
+сделано для подстраховки, чтобы пользователь нечаянно не спалил 
+микроконтроллер в ходе своих эксперементов.</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp; Для своих макетов впрочем можно обойтись и без этого резистора.&nbsp;</div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/2.gif" alt="самый простой способ подключения кнопки к микроконтроллеру" title="самый простой способ подключения кнопки к микроконтроллеру" border="0" width="750"></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="center">&nbsp;Рис 1с</div>
+<h1>Второй способ - с использованием диодов</h1>
+<div align="center"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/2a.gif" alt="подключение кнопок к микроконтроллеру с помощью диодов" title="подключение кнопок к микроконтроллеру с помощью диодов" border="0"></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="center">Рис. 2а</div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/butdiode.gif" border="0" hspace="5"></div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/2b.gif" alt="подключение кнопок к микроконтроллеру с помощью диодов" title="подключение кнопок к микроконтроллеру с помощью диодов" border="0" width="750"></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="center">Рис. 2б</div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/but3diode.gif" border="0"></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+ Используется когда кнопок больше двух, а выводы мк хочется сэкономить. 
+Каждой кнопке в данном случае соответствует свой цифровой код, а&nbsp; 
+количество кнопок, которые можно таким способом повесить на N выводов мк
+ =&nbsp; 2<sup>N</sup>&nbsp; - 1. То есть на три вывода можно повесить 7
+ кнопок, на четыре – 15 и так далее... но я бы больше 7-ми вешать не 
+стал. Увеличивается количество дополнительных внешних компонентов,&nbsp;
+ усложняется схема и программа мк. Кроме того, для большого количества 
+кнопок есть и другие схемы включения. Подтягивающие резисторы на схеме 
+не показаны, подразумевается, что используются внутренние.</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Кстати, через диоды еще можно завести сигналы от кнопок на вывод 
+внешнего прерывания контроллера (рис. 3). При нажатии любой кнопки вывод
+ внешнего прерывания через диод будет замыкаться на землю и вызывать 
+прерывание (естественно при условии, что оно настроено и разрешено). 
+Таким образом контроллеру не нужно будет постоянно опрашивать кнопки, 
+эта процедура будет запускаться только по событию внешнего 
+прерывания.&nbsp;</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/3c.gif" alt="подключение вывода прерывания через диоды ко всем кнопкам" title="подключение вывода прерывания через диоды ко всем кнопкам" border="0"></div>
+</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Рис. 3</div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/intdiode.gif" border="0"></div>
+<div style="text-align: center;">&nbsp;</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Данная схема актуальна не для всех микроконтроллеров AVR, потому что в 
+некоторых моделях микроконтроллеров внешнее прерывание может возникать 
+по любому изменению на любом выводе. (например в ATmega164P)</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;</div>
+<h1>Третий способ – для матричной клавиатуры</h1>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/4a.gif" alt="подключение матричной клавиатуры к микроконтроллеру" title="подключение матричной клавиатуры к микроконтроллеру" border="0" width="770"></div>
+<div style="font-family: Georgia,Times New Roman,Times,serif; font-size: 15px; text-align: center;">Рис. 4</div>
+<div style="font-family: Georgia,Times New Roman,Times,serif; font-size: 15px; text-align: center;">&nbsp;</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Такой вариант подключения обычно используется для блоков из нескольких 
+кнопок, которые объединены конструктивно и соединены электрически по 
+матричной схеме. Но никто не запрещает использовать эту схему и для 
+включения&nbsp; обычных кнопок, однако реальную экономию она дает при 
+количестве кнопок&nbsp;? 9. </div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Выводы PС0, PС1, PС2, PC3&nbsp; – это строки матрицы, выводы PB0, PB1, 
+PB2 – это столбцы матрицы. Кнопки можно опрашивать либо по строкам, либо
+ по столбцам. Допустим, мы опрашиваем их по столбцам. Процедура опроса 
+будет выглядеть следующим образом. Начальное состояние всех выводов – 
+вход с включенным подтягивающим резистором. Устанавливаем вывод PB0 в 
+режим выхода и выставляем ноль. Теперь нажатие кнопок S1, S2, S3, S4 
+будет замыкать выводы PС0, PС1, PС2, PC3 на 0 питания. Опрашиваем эти 
+выводы и определям нажата ли какая-нибудь кнопка в данный момент. 
+Устанавливаем вывод PB0 в режим выхода и включаем подтягивающий 
+резистор. Устанавливаем вывод PB1 в режим выхода и выставляем ноль. 
+Снова опрашиваем выводы PС0, PС1, PС2, PC3. Теперь нажатие кнопок S5, 
+S6, S7, S8 будет замыкать выводы PС0, PС1, PС2, PC3. Последний столбец 
+кнопок опрашиваем аналогично.&nbsp; <br>&nbsp;</div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/clva.gif" border="0"> <br><br></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Строки матрицы можно завести через диоды на вывод внещнего прерывания. 
+Тогда логику программы можно было бы построить так. Если клавиатура не 
+используется в течении нескольких минут, микроконтроллер переходит в 
+режим пониженного энергопотребления. При этом выводы PB0, PB1, PB2 – 
+конфигурируются как выходы с нулевым логическим уровнем.&nbsp; Когда 
+одна из кнопок нажимается, вывод прерывания через диод замыкается на 
+ноль. Это вызывает внешнее прерывание, микроконтроллер просыпается и 
+запускает таймер по сигналам которого происходит сканирование 
+клавиатуры. Параллельно запускается счетчик времени, который 
+сбрасывается при нажатии любой из кнопок. Как только он переполняется, 
+микроконтроллер опять переходит в режим пониженного 
+энергопотребления.&nbsp;</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/4b.gif" alt="подключение матричной клавиатуры к микроконтроллеру" title="подключение матричной клавиатуры к микроконтроллеру" border="0" width="770"></div>
+</div>
+<h1>Четвертый способ – ацп в помощь</h1>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Это, пожалуй, пограничный случай экономии выводов при подключении 
+кнопок, поскольку задействован только один вывод микроконтроллера – 
+вывод АЦП. Суть способа понятна из рисунка. У нас есть резистивный 
+делитель&nbsp; с известными уровнями напряжений на резисторах, с помощью
+ кнопок эти напряжения мы коммутируем на вход АЦП. Контроллер 
+оцифровывает напряжение на этом выводе&nbsp; и, исходя из того, в какой 
+диапазон попадает считанное напряжение, определяет номер нажатой кнопки.</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;
+ Когда ни одна кнопка не нажата, вход АЦП притянут к земле резистором 
+R2. Оставлять вход АЦП плавающим нельзя, а то он будет ловить помехи. 
+При замыкании кнопок резистор R2 оказывается включенным параллельно с 
+резисторами делителя. Чтобы он не влиял на уровень напряжения на входе 
+АЦП, его значение выбирают довольно большим. Резистор R1 предназначен 
+для ограничения величины входного тока в случае если вывод контроллера 
+окажется в режиме цифрового входа и будет нажата кнопка S5.</div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/5a.gif" alt="подключение нескольких кнопок к ацп микроконтроллера" title="подключение нескольких кнопок к ацп микроконтроллера" border="0"></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="center">Рис. 5 </div>
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/adc1.gif" border="0"><br><br></div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;
+ Есть еще один вариант подобной схемы приведен на рис. 6. Здесь с 
+помощью кнопок определенные резисторы делителя напряжения коммутируются 
+на землю. </div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">&nbsp;&nbsp;
+ Неудобство этих схемы очевидно. Все резисторы делителя имеют разное 
+сопротивление, а это усложняет и расчет, и подбор компонентов.&nbsp;</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="justify">
+<div style="text-align: center;"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/5b.gif" alt="подключение нескольких кнопок к ацп микроконтроллера" title="подключение нескольких кнопок к ацп микроконтроллера" border="0"></div>
+</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="center">Рис. 6</div>
+<div style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 15px;" align="center"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/adc2.gif" border="0"> </div>
+<p><strong>Продолжение следует...</strong></p>
+<p>&nbsp;</p>	  
+	  	  	  </td></tr></tbody></table>
+
+		<div class="clr"></div>
+
+	  
+				<div class="itemContentFooter">
+
+						<!-- Item Hits -->
+			<span class="itemHits">
+							</span>
+			
+						<!-- Item date modified -->
+			<span class="itemDateModified">
+							</span>
+			
+			<div class="clr"></div>
+		</div>
+		
+	  <!-- Plugins: AfterDisplayContent -->
+	  
+	  <!-- K2 Plugins: K2AfterDisplayContent -->
+	  
+	  <div class="clr"></div>
+  </div>
+
+	
+
+<script type="text/javascript">(function() {
+  if (window.pluso)if (typeof window.pluso.start == "function") return;
+  if (window.ifpluso==undefined) { window.ifpluso = 1;
+    var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+    s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+    s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+    var h=d[g]('body')[0];
+    h.appendChild(s);
+  }})();</script>
+<div class="pluso" data-background="transparent" data-options="big,square,line,horizontal,counter,theme=06" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print"><div class="pluso-010010101001-06"><span class="pluso-wrap" style="background:transparent"><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="ВКонтакте" class="pluso-vkontakte"></a><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="Одноклассники" class="pluso-odnoklassniki"></a><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="Facebook" class="pluso-facebook"></a><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="Twitter" class="pluso-twitter"></a><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="Google+" class="pluso-google"></a><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="Мой Мир@Mail.Ru" class="pluso-moimir"></a><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="Отправить на email" class="pluso-email"></a><a href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html" title="Печатать" class="pluso-print"></a><a href="http://pluso.ru/" class="pluso-more"></a></span><span class="pluso-counter"><b title="0">0</b></span></div></div>
+
+
+    <div class="itemLinks">
+
+				<!-- Item category -->
+		<div class="itemCategory">
+			<span></span>
+			<a href="http://chipenable.ru/"></a>
+		</div>
+		
+	  
+	  
+		<div class="clr"></div>
+  </div>
+  
+    <!-- Author Block -->
+  <div class="itemAuthorBlock">
+
+  	  	<img class="itemAuthorAvatar" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/25.jpg" alt="Pashgan">
+  	
+    <div class="itemAuthorDetails">
+      <h3 class="itemAuthorName">
+      	<a rel="author" href="http://chipenable.ru/index.php/how-connection/itemlist/user/62-pashgan.html">Pashgan</a>
+      </h3>
+
+      
+      
+      
+			<div class="clr"></div>
+
+			<!-- K2 Plugins: K2UserDisplay -->
+			
+    </div>
+    <div class="clr"></div>
+  </div>
+  
+    <!-- Latest items from author -->
+	<div class="itemAuthorLatest">
+		<h3>Последнее от Pashgan</h3>
+		<ul>
+						<li class="even">
+				<a href="http://chipenable.ru/index.php/programming-avr/item/147-semisegmentnyj-indikator.html">Библиотека для семисегментного индикатора</a>
+			</li>
+						<li class="odd">
+				<a href="http://chipenable.ru/index.php/how-connection/item/146-raschet-bestransformatornoj-shemy.html">Бестрансформаторный блок питания. Расчет. Ч2</a>
+			</li>
+						<li class="even">
+				<a href="http://chipenable.ru/index.php/how-connection/item/145-bestransformatornoe-pitanie-sxema.html">Бестрансформаторное питание. Принцип работы. Ч.1</a>
+			</li>
+						<li class="odd">
+				<a href="http://chipenable.ru/index.php/programming-avr/item/144-sqrt-root.html">Быстрое вычисление квадратного корня на Си</a>
+			</li>
+						<li class="even">
+				<a href="http://chipenable.ru/index.php/projects-avr/item/143-usb-scope-avr.html">Самый дешевый двухканальный USB осциллограф в галактике</a>
+			</li>
+					</ul>
+		<div class="clr"></div>
+	</div>
+	
+			
+  
+	<div class="clr"></div>
+
+  
+  
+    <!-- Item navigation -->
+  <div class="itemNavigation">
+  	<span class="itemNavigationTitle">Другие материалы в этой категории:</span>
+
+				<a class="itemPrevious" href="http://chipenable.ru/index.php/how-connection/item/54-podklyuchenie-lcd-varianty-shem.html">
+			« Подключение lcd. Варианты схем		</a>
+		
+				<a class="itemNext" href="http://chipenable.ru/index.php/how-connection/item/11-podklyuchenie-lcd-ot-telefona-motorola-c350.html">
+			Подключение lcd от телефона Motorola C350 »
+		</a>
+		
+  </div>
+  
+  <!-- Plugins: AfterDisplay -->
+  
+  <!-- K2 Plugins: K2AfterDisplay -->
+  
+    <!-- K2 Plugins: K2CommentsBlock -->
+  <div id="jc_vk_share_head" class="jc">
+				<a href="javascript:void(null)" onclick="jc_vk_show_hide('jc', 'vk', this);" class="jc_vk_share_link jc_link">На сайте</a><a href="javascript:void(null)" onclick="jc_vk_show_hide('vk', 'jc', this);" class="jc_vk_share_link vk_link">Вконтакте</a>
+			</div>
+			<div class="jc_vk_share_body">
+				<div id="jc_vk_share_jc"><script type="text/javascript">
+<!--
+var jcomments=new JComments(13, 'com_k2','/index.php/component/jcomments/');
+jcomments.setList('comments-list');
+//-->
+</script>
+<div id="jc">
+<div id="comments"><h4>Комментарии <a class="rss" href="http://chipenable.ru/index.php/component/jcomments/feed/com_k2/13.html" title="RSS лента комментариев этой записи" target="_blank">&nbsp;</a><a class="refresh" href="#" title="Обновить список комментариев" onclick="jcomments.showPage(13,'com_k2',0);return false;">&nbsp;</a></h4>
+<div class="comments-list" id="comments-list-0">
+		<div class="even" id="comment-item-59">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_005.png" alt="alexandershahbazov"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-59" id="comment-59">#</a>
+<span class="comment-author">alexandershahbazov</span>
+<span class="comment-date">08.12.2009 21:58</span>
+<div class="comment-body" id="comment-body-59">Желательно все статьи ( там гне надо ! )<br>сопровождать схемами как здесь !<br><br>Понравилось !</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(59); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(59,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(59); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="odd" id="comment-item-103">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-103" id="comment-103">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">04.01.2010 19:14</span>
+<div class="comment-body" id="comment-body-103">О! Вот на тему входа в режиме выхода не задумывался. Круто! Буду ставить резюки, заодно помехозащищённо<span style="font-size:0;padding:0;margin:0;"> </span>сть чуть выше будет!</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(103); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(103,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(103); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="even" id="comment-item-148">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-148" id="comment-148">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">26.01.2010 02:53</span>
+<div class="comment-body" id="comment-body-148">Отличная статья для ликбеза! <br>Но почему бы не добавить еще "способов", например с использованием сдвиговых регистров с параллельной загрузкой (SN74HC165)?</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(148); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(148,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(148); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="odd" id="comment-item-149">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-149" id="comment-149">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">26.01.2010 03:03</span>
+<div class="comment-body" id="comment-body-149">По статье возник вопрос:<br>В
+ варианте с "матричной клавиатурой" не совсем понятно почему вы 
+рекомендуете неактивные выводы PB* переключать в режим входа с 
+подтяжкой? чем чревата установка 1-цы в режиме выхода?<br>Спасибо.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(149); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(149,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(149); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="even" id="comment-item-151">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_004.png" alt="Pashgan"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-151" id="comment-151">#</a>
+<span class="comment-author">Pashgan</span>
+<span class="comment-date">26.01.2010 06:48</span>
+<div class="comment-body" id="comment-body-151"><strong>Seych</strong><br>Добавлю.. статья же не закрыта. <br><br>Просто режим "входа" безопаснее. Спалить вывод в таком режиме замыканием на + или 0 питания нельзя.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(151); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(151,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(151); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="odd" id="comment-item-270">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-270" id="comment-270">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">31.03.2010 01:15</span>
+<div class="comment-body" id="comment-body-270">Хороший сайт. Творческих успехов автору</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(270); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(270,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(270); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="even" id="comment-item-362">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-362" id="comment-362">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">01.05.2010 04:42</span>
+<div class="comment-body" id="comment-body-362">А как написать прогу для рисунка 2а.<br>Как выглядит код под CV.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(362); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(362,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(362); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="odd" id="comment-item-365">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_004.png" alt="Pashgan"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-365" id="comment-365">#</a>
+<span class="comment-author">Pashgan</span>
+<span class="comment-date">03.05.2010 13:59</span>
+<div class="comment-body" id="comment-body-365">Это на форум <a href="http://chipenable.ru/index.php/forum-chipenable.html" target="_blank">http://chipenable.ru/index.php/forum-chipenable.html</a>. Сделай тему, а я накидаю код.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(365); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(365,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(365); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="even" id="comment-item-505">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-505" id="comment-505">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">23.07.2010 09:21</span>
+<div class="comment-body" id="comment-body-505">автор молодец! Спасибо за интересности. Жаль кодов нет, было бы очень наглядно!<br><br>А
+ по поводу АЦП могу сказать так, я себе в одно время купил каждого 
+номинала Е24 резисторов по 100 штук, получилось в пределах 250 грн по 
+цене, и теперь никаких проблем с подбором резистора нужного 
+сопротивления. Просто взял кулечек нашел номиналы, припаял и все.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(505); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(505,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(505); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="odd" id="comment-item-683">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-683" id="comment-683">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">03.10.2010 09:17</span>
+<div class="comment-body" id="comment-body-683">Подскажите, пожалуйста, 
+почему на рисунке 3 используются диоды? Нужно ли добавить резисторы, 
+если при уровне "0" на любом выводе подтягивающий резистор отключается?</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(683); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(683,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(683); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+	</div>
+	<div class="comments-list" id="comments-list-683">
+		<div class="even" id="comment-item-686">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Guest"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-686" id="comment-686">#</a>
+<span class="comment-author">Guest</span>
+<span class="comment-date">03.10.2010 19:03</span>
+<div class="comment-body" id="comment-body-686">Схема логического И. Нажатие любой кнопки приводит к тому, что на выводе PD2 будет нулевой логический уровень. <br><span class="quote">Цитата:</span><blockquote><div>Нужно ли добавить резисторы, если при уровне "0" на любом выводе подтягивающий резистор отключается?</div></blockquote>А
+ как это происходит? Программно? Или у тебя какой-то МК особенный? Мне 
+кажется, при 0 на входе отключение резистора ничего не меняет. Криминал 
+будет только, если вход микроконтроллер<span style="font-size:0;padding:0;margin:0;"> </span>а будет "болтаться в воздухе" при не нажатой кнопке</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(686); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(686,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(686); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+	</div>
+		<div class="odd" id="comment-item-743">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="n4nn31355"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-743" id="comment-743">#</a>
+<span class="comment-author">n4nn31355</span>
+<span class="comment-date">24.10.2010 02:54</span>
+<div class="comment-body" id="comment-body-743">а можно подробее в каки 
+режимах можно будет обработать сразу все нажатые кнопки(т.е. чтобы не 
+было такого что при нажатой А, кнопка В не орпеделится, пока А не 
+отпустишь) и в каких случаях наоборот будет "висеть" только последнее 
+нажатие и первое?</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(743); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(743,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(743); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+	</div>
+	<div class="comments-list" id="comments-list-743">
+		<div class="even" id="comment-item-757">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_004.png" alt="Pashgan"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-757" id="comment-757">#</a>
+<span class="comment-author">Pashgan</span>
+<span class="comment-date">31.10.2010 20:50</span>
+<div class="comment-body" id="comment-body-757">о какой схеме подключения идет речь? о схеме с диодами?</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(757); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(757,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(757); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+	</div>
+		<div class="odd" id="comment-item-1271">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Компилятор"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-1271" id="comment-1271">#</a>
+<span class="comment-author">Компилятор</span>
+<span class="comment-date">27.02.2011 19:02</span>
+<div class="comment-body" id="comment-body-1271">Кросава мольчишка !!!<br>Именно это я и искал =)</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(1271); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(1271,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(1271); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="even" id="comment-item-1289">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="Amator"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-1289" id="comment-1289">#</a>
+<span class="comment-author">Amator</span>
+<span class="comment-date">04.03.2011 14:11</span>
+<div class="comment-body" id="comment-body-1289">Хороший обзор. Теперь дело за кодом отработки нажатой клавиши для каждого варианта.  <img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/smile.gif" alt=":-)" border="0"> </div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(1289); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(1289,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(1289); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="odd" id="comment-item-1537">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="IRLML"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-1537" id="comment-1537">#</a>
+<span class="comment-author">IRLML</span>
+<span class="comment-date">19.06.2011 06:33</span>
+<div class="comment-body" id="comment-body-1537">Подскажите, пожалуйста, на рисунке 3 нельзя обойтись перемычками вместо диодов?</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(1537); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(1537,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(1537); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+	</div>
+	<div class="comments-list" id="comments-list-1537">
+		<div class="even" id="comment-item-1546">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="JoJo"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-1546" id="comment-1546">#</a>
+<span class="comment-author">JoJo</span>
+<span class="comment-date">22.06.2011 08:51</span>
+<div class="comment-body" id="comment-body-1546">Нет, нельзя. Перемычки просто закоротят между собой все выводы мк.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(1546); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(1546,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(1546); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+	</div>
+		<div class="odd" id="comment-item-1829">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_003.png" alt="ДЕнис"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-1829" id="comment-1829">#</a>
+<span class="comment-author">ДЕнис</span>
+<span class="comment-date">05.11.2011 11:38</span>
+<div class="comment-body" id="comment-body-1829">Хорошая статья СПАСИБО!!!!</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(1829); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(1829,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(1829); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+		<div class="even" id="comment-item-2450">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_002.png" alt="Андрей"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-2450" id="comment-2450">#</a>
+<span class="comment-author">Андрей</span>
+<span class="comment-date">28.01.2013 16:06</span>
+<div class="comment-body" id="comment-body-2450">Привет Паша. Я тут опечатку у тебя обнаружил (или может сам недопонимаю) в обьяснение Рис.4;<br>"Устанавливаем вывод PB0 в режим <u>выхода</u>
+ и выставляем ноль. Теперь нажатие кнопок S1, S2, S3, S4 будет замыкать 
+выводы PС0, PС1, PС2, PC3 на 0 питания. Опрашиваем эти выводы и 
+определям нажата ли какая-нибудь кнопка в данный момент. Устанавливаем 
+вывод PB0 в режим выхода и включаем подтягивающий резистор. 
+Устанавливаем вывод PB1 в режим <u>входа</u> (выхода?) и выставляем ноль."</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(2450); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(2450,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(2450); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+	</div>
+	<div class="comments-list" id="comments-list-2450">
+		<div class="odd" id="comment-item-2452">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_004.png" alt="Pashgan"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-2452" id="comment-2452">#</a>
+<span class="comment-author">Pashgan</span>
+<span class="comment-date">28.01.2013 18:17</span>
+<div class="comment-body" id="comment-body-2452">Да, опечатка. Поправил.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(2452); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(2452,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(2452); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+	</div>
+		<div class="even" id="comment-item-2451">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_002.png" alt="Андрей"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-2451" id="comment-2451">#</a>
+<span class="comment-author">Андрей</span>
+<span class="comment-date">28.01.2013 16:09</span>
+<div class="comment-body" id="comment-body-2451">Блин, чуть не забыл.. Спасибо за статью. Очень полезно и толково.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(2451); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(2451,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(2451); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+	</div>
+	<div class="comments-list" id="comments-list-2451">
+		<div class="odd" id="comment-item-2453">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar_004.png" alt="Pashgan"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-2453" id="comment-2453">#</a>
+<span class="comment-author">Pashgan</span>
+<span class="comment-date">28.01.2013 18:17</span>
+<div class="comment-body" id="comment-body-2453">Пожалуйста.</div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(2453); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(2453,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(2453); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+	</div>
+		<div class="even" id="comment-item-2747">
+<div class="rbox"><div class="rbox_tr"><div class="rbox_tl"><div class="rbox_t">&nbsp;</div></div></div><div class="rbox_m">
+<div class="comment-avatar"><img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/avatar.png" alt="User11"></div>
+<div class="comment-box avatar-indent">
+<a class="comment-anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#comment-2747" id="comment-2747">#</a>
+<span class="comment-author">User11</span>
+<span class="comment-date">03.04.2013 19:05</span>
+<div class="comment-body" id="comment-body-2747">Очень доступно! Спасибо!  <img src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/smile.gif" alt=":-)" border="0"> </div>
+<span class="comments-buttons">
+<a href="#" onclick="jcomments.showReply(2747); return false;">Ответить</a>
+ | <a href="#" onclick="jcomments.showReply(2747,1); return false;">Ответить с цитатой</a> | 
+<a href="#" onclick="jcomments.quoteComment(2747); return false;">Цитировать</a>
+</span>
+</div><div class="clear"></div>
+</div><div class="rbox_br"><div class="rbox_bl"><div class="rbox_b">&nbsp;</div></div></div></div>
+		</div>
+</div>
+<div id="comments-list-footer"><a class="refresh" href="#" title="Обновить список комментариев" onclick="jcomments.showPage(13,'com_k2',0);return false;">Обновить список комментариев</a><br><a class="rss" href="http://chipenable.ru/index.php/component/jcomments/feed/com_k2/13.html" title="RSS лента комментариев этой записи" target="_blank">RSS лента комментариев этой записи</a></div>
+</div>
+<h4>Добавить комментарий</h4>
+<div class="comments-policy"><b>При добавлении в комментарий Си кода, заключайте его между тегами [code] [/code]. Иначе он будет отображаться некорректно.</b></div>
+<a id="addcomments" href="#addcomments"></a>
+<form id="comments-form" name="comments-form" action="javascript:void(null);">
+<p>
+	<span>
+		<input id="comments-form-name" name="name" maxlength="20" size="22" tabindex="1" type="text">
+		<label for="comments-form-name">Имя (обязательное)</label>
+	</span>
+</p>
+<p>
+	<span>
+		<input id="comments-form-email" name="email" size="22" tabindex="2" type="text">
+		<label for="comments-form-email">E-Mail (обязательное)</label>
+	</span>
+</p>
+<p>
+	<span>
+		<span style="display: block;" class="bbcode"><a class="bbcode-b" title="Жирный" id="bbcode-b" href="#" style="display: block;"></a><a class="bbcode-i" title="Курсив" id="bbcode-i" href="#" style="display: block;"></a><a class="bbcode-u" title="Подчеркнутый" id="bbcode-u" href="#" style="display: block;"></a><a class="bbcode-s" title="Зачеркнутый" id="bbcode-s" href="#" style="display: block;"></a><a class="bbcode-quote" title="Цитата" id="bbcode-quote" href="#" style="display: block;"></a><a class="bbcode-list" title="Список" id="bbcode-list" href="#" style="display: block;"></a><a class="custombbcode11" title="Добавить код" id="custombbcode11" href="#" style="display: block;"></a><a class="bbcode-smile" href="#" style="display: block;"></a></span><textarea id="comments-form-comment" name="comment" cols="65" rows="8" tabindex="5"></textarea><div class="grippie"><span class="counter">Осталось: <span>2000</span>  символов</span></div>
+	</span>
+</p>
+<p>
+	<span>
+		<input class="checkbox" id="comments-form-subscribe" name="subscribe" value="1" tabindex="5" type="checkbox">
+		<label for="comments-form-subscribe">Подписаться на уведомления о новых комментариях</label><br>
+	</span>
+</p>
+<p>
+	<span>
+		<img class="captcha" onclick="jcomments.clear('captcha');" id="comments-form-captcha-image" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/96383.jpeg" alt="Защитный код" height="60" width="121"><br>
+		<span class="captcha" onclick="jcomments.clear('captcha');">Обновить</span><br>
+		<input class="captcha" id="comments-form-captcha" name="captcha_refid" size="5" tabindex="6" type="text"><br>
+	</span>
+</p>
+<div id="comments-form-buttons">
+	<div class="btn" id="comments-form-send"><div><a href="#" tabindex="7" onclick="jcomments.saveComment();return false;" title="Отправить (Ctrl+Enter)">Отправить</a></div></div>
+	<div class="btn" id="comments-form-cancel" style="display:none;"><div><a href="#" tabindex="8" onclick="return false;" title="Отменить">Отменить</a></div></div>
+	<div style="clear:both;"></div>
+</div>
+<div>
+	<input name="object_id" value="13" type="hidden">
+	<input name="object_group" value="com_k2" type="hidden">
+</div>
+</form>
+<script type="text/javascript">
+<!--
+function JCommentsInitializeForm()
+{
+	var jcEditor = new JCommentsEditor('comments-form-comment', true);
+	jcEditor.addButton('b','Жирный','Введите текст для форматирования');
+	jcEditor.addButton('i','Курсив','Введите текст для форматирования');
+	jcEditor.addButton('u','Подчеркнутый','Введите текст для форматирования');
+	jcEditor.addButton('s','Зачеркнутый','Введите текст для форматирования');
+	jcEditor.addButton('quote','Цитата','Введите текст цитаты');
+	jcEditor.addButton('list','Список','Введите текст элемента списка');
+	jcEditor.addButton('custombbcode11','Добавить код','Введите текст для форматирования','[code]','[/code]','','');
+	jcEditor.initSmiles('http://chipenable.ru/components/com_jcomments/images/smiles');
+	jcEditor.addSmile(':D','laugh.gif');
+	jcEditor.addSmile(':lol:','lol.gif');
+	jcEditor.addSmile(':-)','smile.gif');
+	jcEditor.addSmile(';-)','wink.gif');
+	jcEditor.addSmile('8)','cool.gif');
+	jcEditor.addSmile(':-|','normal.gif');
+	jcEditor.addSmile(':-*','whistling.gif');
+	jcEditor.addSmile(':oops:','redface.gif');
+	jcEditor.addSmile(':sad:','sad.gif');
+	jcEditor.addSmile(':cry:','cry.gif');
+	jcEditor.addSmile(':o','surprised.gif');
+	jcEditor.addSmile(':-?','confused.gif');
+	jcEditor.addSmile(':-x','sick.gif');
+	jcEditor.addSmile(':eek:','shocked.gif');
+	jcEditor.addSmile(':zzz','sleeping.gif');
+	jcEditor.addSmile(':P','tongue.gif');
+	jcEditor.addSmile(':roll:','rolleyes.gif');
+	jcEditor.addSmile(':sigh:','unsure.gif');
+	jcEditor.addCounter(2000, 'Осталось:', ' символов', 'counter');
+	jcomments.setForm(new JCommentsForm('comments-form', jcEditor));
+}
+
+if (window.addEventListener) {window.addEventListener('load',JCommentsInitializeForm,false);}
+else if (document.addEventListener){document.addEventListener('load',JCommentsInitializeForm,false);}
+else if (window.attachEvent){window.attachEvent('onload',JCommentsInitializeForm);}
+else {if (typeof window.onload=='function'){var oldload=window.onload;window.onload=function(){oldload();JCommentsInitializeForm();}} else window.onload=JCommentsInitializeForm;} 
+//-->
+</script>
+<div id="comments-footer" align="center">
+ 
+<a href="http://www.joomlatune.ru/" title="JComments" target="_blank" rel="nofollow">JComments1</a>
+
+</div>
+
+<script type="text/javascript">
+<!--
+jcomments.setAntiCache(1,1,0);
+//-->
+</script> 
+</div>
+</div>
+				<div id="jc_vk_share_vk">		
+			<div style="height: 0px; width: 600px; background: none repeat scroll 0% 0% transparent;" id="jlvkcomments"><iframe style="overflow: hidden; height: 0px;" id="vkwidget1" scrolling="no" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/widget_comments_002.html" name="fXD42c16" frameborder="0" height="133" width="600"></iframe></div>
+			<script type="text/javascript">
+			VK.Widgets.Comments('jlvkcomments', {limit: 5, width: '600', attach: '*', autoPublish: 1, norealtime: 0, onChange: addComment},13);
+			</script>
+			</div>
+			</div>  
+ 
+		<div class="itemBackToTop">
+		<a class="k2Anchor" href="http://chipenable.ru/index.php/how-connection/item/13-kak-podklyuchit-k-mikrokontrolleru-knopki.html#startOfPageId13">
+			Наверх		</a>
+	</div>
+	
+	<div class="clr"></div>
+</div>
+<!-- End K2 Item Layout -->
+
+<!-- JoomlaWorks "K2" (v2.5.6) | Learn more about K2 at http://getk2.org -->
+
+
+		</div>
+		<div class="cleared"></div>
+		
+		
+		</div>
+		
+		    </div>
+		</div>
+		
+
+
+		<div class="moduletable chiptags">
+					
+<div id="k2ModuleBox112" class="k2TagCloudBlock  chiptags">
+			<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/1wire.html" style="font-size:91%" title="5 материалов с тэгом 1wire">
+		1wire	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/arm.html" style="font-size:87%" title="4 материалов с тэгом arm">
+		arm	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/attiny.html" style="font-size:87%" title="4 материалов с тэгом attiny">
+		attiny	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/avr.html" style="font-size:300%" title="58 материалов с тэгом avr">
+		avr	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/avr%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%BE%D1%80.html" style="font-size:87%" title="4 материалов с тэгом avr программатор">
+		avr программатор	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/ds18b20.html" style="font-size:91%" title="5 материалов с тэгом ds18b20">
+		ds18b20	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/eagle%20cad.html" style="font-size:83%" title="3 материалов с тэгом eagle cad">
+		eagle cad	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/eeprom.html" style="font-size:91%" title="5 материалов с тэгом eeprom">
+		eeprom	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/event%20driven.html" style="font-size:83%" title="3 материалов с тэгом event driven">
+		event driven	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/i2c.html" style="font-size:95%" title="6 материалов с тэгом i2c">
+		i2c	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/IAR.html" style="font-size:111%" title="10 материалов с тэгом IAR">
+		IAR	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/karma%20sam3s.html" style="font-size:87%" title="4 материалов с тэгом karma sam3s">
+		karma sam3s	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/lcd.html" style="font-size:95%" title="6 материалов с тэгом lcd">
+		lcd	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/RTOS.html" style="font-size:83%" title="3 материалов с тэгом RTOS">
+		RTOS	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/scmRTOS.html" style="font-size:79%" title="2 материалов с тэгом scmRTOS">
+		scmRTOS	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/sd.html" style="font-size:83%" title="3 материалов с тэгом sd">
+		sd	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/spi.html" style="font-size:83%" title="3 материалов с тэгом spi">
+		spi	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/state%20machine.html" style="font-size:83%" title="3 материалов с тэгом state machine">
+		state machine	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/tsop.html" style="font-size:87%" title="4 материалов с тэгом tsop">
+		tsop	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/twi.html" style="font-size:95%" title="6 материалов с тэгом twi">
+		twi	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/uart.html" style="font-size:83%" title="3 материалов с тэгом uart">
+		uart	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/usb.html" style="font-size:83%" title="3 материалов с тэгом usb">
+		usb	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/volatile.html" style="font-size:83%" title="3 материалов с тэгом volatile">
+		volatile	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/WINAVR.html" style="font-size:83%" title="3 материалов с тэгом WINAVR">
+		WINAVR	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D1%8B.html" style="font-size:123%" title="13 материалов с тэгом алгоритмы">
+		алгоритмы	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B0%D1%86%D0%BF.html" style="font-size:83%" title="3 материалов с тэгом ацп">
+		ацп	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B8.html" style="font-size:119%" title="12 материалов с тэгом библиотеки">
+		библиотеки	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B4%D0%B0%D1%82%D1%87%D0%B8%D0%BA.html" style="font-size:91%" title="5 материалов с тэгом датчик">
+		датчик	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D0%B5%D1%80.html" style="font-size:95%" title="6 материалов с тэгом драйвер">
+		драйвер	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D1%87%D0%B8%D0%BA.html" style="font-size:79%" title="2 материалов с тэгом загрузчик">
+		загрузчик	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81.html" style="font-size:111%" title="10 материалов с тэгом интерфейс">
+		интерфейс	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D1%8B.html" style="font-size:83%" title="3 материалов с тэгом интерфейсы">
+		интерфейсы	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8.html" style="font-size:79%" title="2 материалов с тэгом кнопки">
+		кнопки	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B.html" style="font-size:95%" title="6 материалов с тэгом компоненты">
+		компоненты	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%BC%D0%B0%D0%BA%D1%80%D0%BE%D1%81%D1%8B.html" style="font-size:87%" title="4 материалов с тэгом макросы">
+		макросы	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%BE%D1%83.html" style="font-size:87%" title="4 материалов с тэгом оу">
+		оу	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%BF%D0%B5%D1%80%D0%B8%D1%84%D0%B5%D1%80%D0%B8%D1%8F.html" style="font-size:83%" title="3 материалов с тэгом периферия">
+		периферия	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%BE%D0%B2.html" style="font-size:87%" title="4 материалов с тэгом программирование микроконтроллеров">
+		программирование микроконтроллеров	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D0%BF%D1%80%D0%BE%D1%82%D0%BE%D0%BA%D0%BE%D0%BB.html" style="font-size:83%" title="3 материалов с тэгом протокол">
+		протокол	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%80%D0%B0%D1%81%D1%87%D0%B5%D1%82.html" style="font-size:107%" title="9 материалов с тэгом расчет">
+		расчет	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%81%D0%B5%D0%BC%D0%B8%D1%81%D0%B5%D0%B3%D0%BC%D0%B5%D0%BD%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D0%B4%D0%B8%D0%BA%D0%B0%D1%82%D0%BE%D1%80.html" style="font-size:87%" title="4 материалов с тэгом семисегментный индикатор">
+		семисегментный индикатор	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%81%D0%B8.html" style="font-size:115%" title="11 материалов с тэгом си">
+		си	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B9%D0%BD%D0%B0%D1%8F%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0.html" style="font-size:87%" title="4 материалов с тэгом событийная система">
+		событийная система	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%81%D1%85%D0%B5%D0%BC%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0.html" style="font-size:127%" title="14 материалов с тэгом схемотехника">
+		схемотехника	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%82%D0%B0%D0%B9%D0%BC%D0%B5%D1%80.html" style="font-size:87%" title="4 материалов с тэгом таймер">
+		таймер	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%83%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D0%B8.html" style="font-size:79%" title="2 материалов с тэгом указатели">
+		указатели	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5.html" style="font-size:95%" title="6 материалов с тэгом управление">
+		управление	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%83%D1%81%D1%82%D1%80%D0%BE%D0%B9%D1%81%D1%82%D0%B2%D0%B0.html" style="font-size:111%" title="10 материалов с тэгом устройства">
+		устройства	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B9%20%D0%BA%D1%83%D1%80%D1%81%20avr.html" style="font-size:143%" title="18 материалов с тэгом учебный курс avr">
+		учебный курс avr	</a>
+				<a href="http://chipenable.ru/index.php/programming-avr/itemlist/tag/%D1%88%D0%B8%D0%BC.html" style="font-size:87%" title="4 материалов с тэгом шим">
+		шим	</a>
+			<div class="clr"></div>
+</div>
+		</div>
+	</div>
+
+</div>
+<div class="cleared"></div>
+
+
+<div class="Footer">
+ <div class="Footer-inner">
+    <div class="Footer-text">
+  		<div class="moduletable">
+					
+
+<div class="custom">
+	<p style="text-align: center;">Использование материалов этого сайта разрешается только с письменного согласия&nbsp;<a href="https://plus.google.com/112579010839286217039" rel="author">автора</a><br>Copyright © 2009-2014 ChipEnable.Ru&nbsp;</p></div>
+		</div>
+	
+
+
+
+
+
+  </div>
+ </div>
+ <div class="Footer-background"></div>
+</div>
+
+    </div>
+</div>
+<div class="cleared"></div>
+<p class="page-footer">  </p>
+</div><script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/pluso-like.js" async="" charset="UTF-8" type="text/javascript"></script>
+
+
+
+ 
+
+<div tabindex="-1" style="z-index: 65555; opacity: 0;" aria-hidden="true" id="sbox-overlay"></div><div class="shadow" style="z-index: 65557;" aria-hidden="true" role="dialog" id="sbox-window"><div style="opacity: 0;" id="sbox-content"></div><a aria-controls="sbox-window" role="button" href="#" id="sbox-btn-close"></a></div><style type="text/css">.pluso{position:relative;z-index:1;display:inline-block;padding:0;-webkit-border-radius:22px;-moz-border-radius:22px;border-radius:22px;background:transparent;text-align:left;font-size:0;line-height:0;*display:inline;*zoom:1;}
+.pluso span{float:none;}
+.pluso-010010101001-06 a:active{ opacity:.6; }
+.pluso-010010101001-06 .pluso-wrap a{display:inline-block;vertical-align:inherit;margin:5px 0 0 5px;padding:0;width:40px;height:40px;background:url(http://share.pluso.ru/img/pluso-like/round/big/04.png) 0 0 transparent no-repeat;}
+.pluso-wrap{margin:0px !important;}
+.pluso-010010101001-06 .pluso-wrap{position:relative;z-index:1;display:inline-block;padding:0 5px 5px 0;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;background:transparent;text-align:left;font-size:0;line-height:0;*display:inline;*zoom:1;}
+.pluso-010010101001-06 a.pluso-more{width:40px;height:40px;background:url(http://share.pluso.ru/img/plus.png) 0 -60px no-repeat!important;position:relative;}
+.pluso-010010101001-06 a.pluso-more{margin-right:-22px;*left:5px;}
+.pluso-010010101001-06 .pluso-counter b{position:relative;padding:8px 12px;-webkit-border-radius: 22px;-moz-border-radius: 22px;border-radius: 122px;background:#eaeaeb;box-shadow:0 0 3px rgba(0,0,0,.3);color:#707070;white-space:nowrap;font:16px/40px Tahoma, Geneva, sans-serif!important;}
+.pluso-010010101001-06 .pluso-counter{position:relative;padding-right:28px;}
+.pluso-010010101001-06 .pluso-counter b{top:-14px;left:28px;}
+.pluso-010010101001-06 .pluso-counter b:after{position: absolute;top: 13px;left: -8px;z-index: 0;display: block;width: 0;border-width: 5px 9px 5px 0;border-style: solid;border-color: transparent #eaeaeb;content: '';}
+.pluso-010010101001-06 br{ display:none; }
+.pluso-box{position:absolute;border:4px solid #eaebea;width:310px;height:225px;overflow:hidden;z-index: 777;background:#f2f2f2;font:normal normal 12px/25px Tahoma, Geneva, sans-serif;box-shadow:0 4px 10px rgba(0, 0, 0, 0.4);text-align:left;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;}
+.pluso-box a b{width:20px;height:20px;position:absolute;left:0;top:2px;}
+.pluso-box a:visited,.pluso-box a:hover,.pluso-box a{font:normal normal 12px/25px Tahoma, Geneva, sans-serif;color:#7f7f7f;text-decoration:none;white-space:nowrap;padding:0 0 0 25px;margin:0 0 0 5px;border:0;position:relative;width:115px;float:left;}
+.pluso-box .pluso-list{background:#ffffff;border-radius:14px;width:100%;height:200px;overflow:auto;position:absolute;left:0;top:25px;}
+.pluso-box a.pluso-logo{background:url(http://share.pluso.ru/img/pluso-like/logo-mini.png) 0 5px no-repeat;width:66px;height:19px;border:0;text-indent:-600em;padding:0 0 0 12px;margin:0 0 0 9px;}
+.pluso-box a.pluso-go{color:#4c4c4c;text-decoration:underline;padding-left:0;}
+.pluso-box a.pluso-close,.pluso-box a.pluso-close:hover,.pluso-box a.pluso-close:visited{float:right;width:20px;text-align:center;font-size:12px;line-height:20px;width:20px;margin:1px 1px 0 0;padding:0;font-weight:bold;color:#4c4c4c;text-decoration:none;background:#ffffff;border-radius:15px;border:1px solid #eaebea;}
+.pluso-box a.pluso-close:hover{background:#7f7f7f;color:#ffffff;border-color:transparent}
+.pluso-tip{cursor:pointer;position:absolute;padding:10px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;white-space:nowrap;font:bold 14px/12px Tahoma, Geneva, sans-serif!important;color:#fff;background:#f78d1d;background:-webkit-gradient(linear, left top, left bottom, from(#7ed263), to(#3d9530));background:-webkit-linear-gradient(top,#7ed263,#3d9530);background:-moz-linear-gradient(top,#7ed263,#3d9530);background:-ms-linear-gradient(top,#7ed263,#3d9530);background:-o-linear-gradient(top,#7ed263,#3d9530);background:linear-gradient(top,#7ed263,#3d9530);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#7ed263, endColorstr=#3d9530);box-shadow:0 0 5px rgba(0,0,0,.5), inset 0 0 0px 1px rgba(0,0,0,.3)}
+.pluso-tip:after{position:absolute;z-index:0;display:block;width:0;height:0;border-style: solid;content:''}
+.pluso-tip.pluso-left-arrow:after{top:40%;right:-6px;border-color:transparent #447b36;border-width:6px 0px 6px 6px}
+.pluso-tip.pluso-top-arrow:after{bottom:-6px;border-color:#27601f transparent;border-width:6px 6px 0px 6px}
+.pluso-tip.pluso-bottom-arrow:after{top:-6px;border-color:#447b36 transparent;border-width:0px 6px 6px 6px}
+@keyframes pluso-market-animate{0% { opacity:1 } 50%{ opacity:.3} 100% { opacity:1}}
+@-webkit-keyframes pluso-market-animate{0% { opacity:1 } 50%{ opacity:.3} 100% { opacity:1}}
+.pluso-overlay-background{height:100%;width:100%;position:fixed;left:0;top:0;z-index:999999999;background-color: rgb(0, 0, 0);background-color: rgba(0, 0, 0, 0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";padding:0;margin:0;}
+.pluso-overlay-box{width:910px;margin: 50px auto 0;overflow:hidden;height:85%;background-color: #f5f5f5;border:1px solid #c4c4c4;padding:0!important;text-align:left;box-shadow:0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;border-radius:10px;}
+a.pluso-overlay-close,a.pluso-overlay-close:hover,a.pluso-overlay-close:visited{position:absolute;left:50%;margin:0 0 0 442px;top:38px;width:26px;height:26px;text-align:center;font:normal 20px/22px Arial;padding:0;color:#878787;text-decoration:none;background:#ffffff;border-radius:26px;border:2px solid #c4c4c4;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+a.pluso-overlay-close:hover{background:#7f7f7f;color:#ffffff;border-color:transparent}
+.pluso-overlay-box div{margin:20px 0 0 0;padding:0 0 12px 0;border-bottom:1px solid #c4c4c4;}
+.pluso-overlay-box ul{list-style:none;margin:10px 0 10px 0px;padding:0;height:85%;overflow:auto;}
+.pluso-overlay-box li{width:210px;height:260px;background:#ffffff;border-radius:10px;border:none;float:left;padding:0;margin:0 0px 10px 10px;}
+.pluso-overlay-box li a{display:block;text-decoration:none;margin:0;padding:0;height:100%;overflow:hidden;position:relative;}
+.pluso-overlay-box li a span, .pluso-overlay-box li a:hover span{position: relative;width: 190px;height:150px;border:1px solid #c4c4c4;overflow:hidden;margin:10px auto 5px auto;padding:0;text-align:center;display:block;}
+.pluso-overlay-box li a:hover span{box-shadow:0 0 5px #c4c4c4;-webkit-box-shadow:0 0 5px #c4c4c4;border:1px solid #c4c4c4}
+.pluso-overlay-box li a em{font:normal bold 15px/20px Arial;float:left;color:#e86340;padding:0px 0 0 10px;margin:0;}
+.pluso-overlay-box li a em u{font:normal normal 12px/12px Arial;text-decoration:none;display:block;color:#eb6338;padding:0;margin:0;}
+.pluso-overlay-box li a strong{font:normal 11px/14px Arial;display:block;padding:0 10px;color:#454545;position:relative;bottom:auto;height:42px;width:180px;overflow:hidden;margin:0 0 5px 0;border:0;}
+.pluso-overlay-box li a:hover strong{height:42px;overflow:auto;padding:0 10px;border:0;}
+.pluso-overlay-box li a b, .pluso-overlay-box li a b:hover, .pluso-overlay-box li a b:active{font:bold normal 15px/18px Arial, sans-serif;color: #ffffff;padding-top: 7px;padding-right: 12px;padding-bottom: 7px;padding-left: 12px;text-decoration: none;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);-moz-box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);text-shadow: 0px 1px 2px #3d8a33;border:solid #4bb543 1px;background:-webkit-gradient(linear, 0 0, 0 100%, from(#95e488), to(#20a517));background: -moz-linear-gradient(top, #95e488, #20a517);background: -o-linear-gradient(top, #95e488, #20a517);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#95e488, endColorStr=#20a517);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#95e488, endColorStr=#20a517);display:inline-block;float:right;bottom:auto;right:10px;position:relative;}
+.pluso-overlay-box li a b:hover{background:-webkit-gradient(linear, 0 0, 0 100%, from(#b1f4a3), to(#27c21c));background: -moz-linear-gradient(top, #b1f4a3, #27c21c);background:-o-linear-gradient(top, #b1f4a3, #27c21c);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b1f4a3, endColorStr=#27c21c);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b1f4a3, endColorStr=#27c21c);}
+.pluso-overlay-box li a b:active{background:-webkit-gradient(linear, 0 0, 0 100%, from(#20a517), to(#95e488));background: -moz-linear-gradient(top, #20a517, #95e488);background:-o-linear-gradient(top, #20a517, #95e488);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#20a517, endColorStr=#95e488);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#20a517, endColorStr=#95e488);}
+.pluso-010010101001-06 .pluso-wrap a{ background-image:url(http://share.pluso.ru/img/pluso-like/square/big/06.png) }.pluso-010010101001-06 .pluso-wrap a.pluso-market-cart, .pluso-010010101001-06 .pluso-wrap a.pluso-market-cart-animate{ background:url(http://share.pluso.ru/img/pluso-like/square/big/market.png) -0px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-cart-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar, .pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar-animate{ background:url(http://share.pluso.ru/img/pluso-like/square/big/market.png) -42px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb, .pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb-animate{ background:url(http://share.pluso.ru/img/pluso-like/square/big/market.png) -84px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-quest, .pluso-010010101001-06 .pluso-wrap a.pluso-market-quest-animate{ background:url(http://share.pluso.ru/img/pluso-like/square/big/market.png) -126px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-quest-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-tag, .pluso-010010101001-06 .pluso-wrap a.pluso-market-tag-animate{ background:url(http://share.pluso.ru/img/pluso-like/square/big/market.png) -168px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-tag-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-box a b{ background-image:url(http://share.pluso.ru/img/pluso-like/round/small/04.png) }.pluso-box a.pluso-market b{ background:url(http://share.pluso.ru/img/pluso-like/round/small/market.png) -21px 0}.pluso-box a.pluso-vkontakte b{ background-position: -84px 0}.pluso-box a.pluso-odnoklassniki b{ background-position: -63px 0}.pluso-box a.pluso-facebook b{ background-position: -0px 0}.pluso-box a.pluso-twitter b{ background-position: -21px 0}.pluso-box a.pluso-google b{ background-position: -126px 0}.pluso-box a.pluso-moimir b{ background-position: -147px 0}.pluso-box a.pluso-pinterest b{ background-position: -105px 0}.pluso-box a.pluso-livejournal b{ background-position: -168px 0}.pluso-box a.pluso-tumblr b{ background-position: -42px 0}.pluso-box a.pluso-liveinternet b{ background-position: -189px 0}.pluso-box a.pluso-springpad b{ background-position: -210px 0}.pluso-box a.pluso-stumbleupon b{ background-position: -231px 0}.pluso-box a.pluso-myspace b{ background-position: -252px 0}.pluso-box a.pluso-formspring b{ background-position: -273px 0}.pluso-box a.pluso-blogger b{ background-position: -294px 0}.pluso-box a.pluso-digg b{ background-position: -315px 0}.pluso-box a.pluso-surfingbird b{ background-position: -336px 0}.pluso-box a.pluso-bobrdobr b{ background-position: -357px 0}.pluso-box a.pluso-readability b{ background-position: -378px 0}.pluso-box a.pluso-instapaper b{ background-position: -399px 0}.pluso-box a.pluso-evernote b{ background-position: -420px 0}.pluso-box a.pluso-delicious b{ background-position: -525px 0}.pluso-box a.pluso-vkrugu b{ background-position: -504px 0}.pluso-box a.pluso-pinme b{ background-position: -546px 0}.pluso-box a.pluso-yandex b{ background-position: -567px 0}.pluso-box a.pluso-yazakladki b{ background-position: -588px 0}.pluso-box a.pluso-moikrug b{ background-position: -609px 0}.pluso-box a.pluso-googlebookmark b{ background-position: -630px 0}.pluso-box a.pluso-yahoo b{ background-position: -651px 0}.pluso-box a.pluso-moemesto b{ background-position: -672px 0}.pluso-box a.pluso-memori b{ background-position: -693px 0}.pluso-box a.pluso-juick b{ background-position: -735px 0}.pluso-box a.pluso-linkedin b{ background-position: -756px 0}.pluso-box a.pluso-webdiscover b{ background-position: -798px 0}.pluso-box a.pluso-bookmark b{ background-position: -441px 0}.pluso-box a.pluso-email b{ background-position: -462px 0}.pluso-box a.pluso-print b{ background-position: -483px 0}.pluso-box a.pluso-webmoney b{ background-position: -924px 0}.pluso-box a.pluso-misterwong b{ background-position: -903px 0}.pluso-box a.pluso-friendfeed b{ background-position: -882px 0}.pluso-box a.pluso-market b{ background-position: --21px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-vkontakte{ background-position: -168px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-odnoklassniki{ background-position: -126px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-facebook{ background-position: -0px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-twitter{ background-position: -42px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-google{ background-position: -252px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-moimir{ background-position: -294px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-email{ background-position: -924px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-print{ background-position: -966px 0}</style><script src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/process.js" async="" charset="UTF-8" type="text/javascript"></script><div style="display:none;top:0;left:0;position:absolute;" id="comments-form-smilespanel"><img class="smile" alt=":D" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/laugh.gif"><img class="smile" alt=":lol:" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/lol.gif"><img class="smile" alt=":-)" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/smile.gif"><img class="smile" alt=";-)" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/wink.gif"><img class="smile" alt="8)" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/cool.gif"><img class="smile" alt=":-|" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/normal.gif"><img class="smile" alt=":-*" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/whistling.gif"><img class="smile" alt=":oops:" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/redface.gif"><img class="smile" alt=":sad:" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/sad.gif"><img class="smile" alt=":cry:" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/cry.gif"><img class="smile" alt=":o" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/surprised.gif"><img class="smile" alt=":-?" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/confused.gif"><img class="smile" alt=":-x" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/sick.gif"><img class="smile" alt=":eek:" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/shocked.gif"><img class="smile" alt=":zzz" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/sleeping.gif"><img class="smile" alt=":P" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/tongue.gif"><img class="smile" alt=":roll:" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/rolleyes.gif"><img class="smile" alt=":sigh:" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D0%BA%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%83%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_files/unsure.gif"></div></body></html>

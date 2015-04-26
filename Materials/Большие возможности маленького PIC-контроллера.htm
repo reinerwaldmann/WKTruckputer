@@ -1,0 +1,586 @@
+<html lang="RU"><head>
+
+<link rel="stylesheet" href="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/tutor.css" type="text/css">
+
+<title>Большие возможности маленького PIC-контроллера</title>
+
+<meta name="description" content="Справочные данные по электронным компонентам">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="Author" content="Гаврилюк Сергей">
+<meta name="Keywords" content="микроэлектроника, микросхема, транзистор, диод, микроконтроллер, память" lang="RU">
+<meta html.cgi="Template  www.gaw.ru">
+
+<meta name="description" content="Справочные данные - микросхемы и электронные компоненты">
+<meta name="Keywords" content="микроэлектроника, микросхема, транзистор, диод, микроконтроллер, память, msp430, Atmel, Maxim, LCD, hd44780, t6963, sed1335, atmega128, avr, электронные компоненты" lang="RU">
+<meta http-equiv="pragma" content="no-cache">
+<meta name="language" content="Russian">
+<meta name="charset" content="Windows-1251">
+<meta name="MSSmartTagsPreventParsing" content="TRUE">
+<meta name="distribution" content="Global">
+<meta name="rating" content="General">
+<meta name="expires" content="">
+<meta name="robots" content="Index, Follow">
+<meta name="revisit-after" content="2 Days">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<link rel="shortcut icon" href="http://www.compitech.ru/html.cgi/arhiv/03_02/favicon.ico">
+<link rel="stylesheet" href="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/style.css">
+</head>
+<body leftmargin="0" topmargin="0" alink="#4C5A66" bgcolor="#647786" link="#4C5A66" marginheight="0" marginwidth="0" text="#4C5A66" vlink="#4C5A66">
+
+<a name="#top">
+<!--LiveInternet counter--><script src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/aci.js" async="" type="text/javascript"></script><script src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/ca-pub-4585385300578666.js" type="text/javascript" async=""></script><script language="JavaScript"><!--
+document.write('<img src="http://counter.yadro.ru/hit?r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+';i'+escape('Жж'+document.title.substring(0,80))+';'+Math.random()+
+'" width=1 height=1 alt="">')//-->
+</script><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/hit.gif" alt="" height="1" width="1"><!--/LiveInternet-->
+
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="780">
+  <tbody><tr> 
+	<td bgcolor="#4C5A66" width="2"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/spacer.gif" height="2" width="2"></td>
+	<td width="768"> 
+	  <table align="center" border="0" cellpadding="0" cellspacing="0" width="768">
+		<tbody><tr> 
+		  <td height="76" width="768"> 
+			<table border="0" cellpadding="0" cellspacing="0" width="768">
+			  <tbody><tr> 
+				<td width="174"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/header1.gif" height="75" width="172"></td>
+				<td width="202"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/header2.gif" height="75" width="372"></td>
+				<td width="234"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/header3.gif" height="75" width="232"></td>
+			  </tr>
+			</tbody></table>
+		  </td>
+		</tr>
+		<tr> 
+		  <td width="768"> 
+			<table bgcolor="#4C5A66" border="0" cellpadding="0" cellspacing="0" width="768">
+			  <tbody><tr> 
+				<td bgcolor="#C9CDD1" valign="top" width="140"> 
+				  <table border="0" cellpadding="0" cellspacing="5" width="100%">
+					<tbody><tr> 
+					  <td><br><br>
+<a href="http://www.compitech.ru/"><strong>Рубликатор</strong></a>
+					  </td>
+					</tr>
+					<tr> 
+					  <td valign="top"> <p>&nbsp;</p>
+<!-- поиск -->
+							<img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/vline.gif" height="4" width="130"> 
+
+						  <p></p>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div align="center">
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-4585385300578666";
+google_ad_width = 120;
+google_ad_height = 90;
+google_ad_format = "120x90_0ads_al_s";
+//2007-03-28: links
+google_ad_channel = "9895613298";
+google_color_border = "FFFFFF";
+google_color_bg = "CCCCCC";
+google_color_link = "0000FF";
+google_color_text = "000000";
+google_color_url = "008000";
+//-->
+</script>
+<script type="text/javascript" src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/show_ads.js">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" frameborder="0" height="90" width="120"></iframe></ins></ins>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<a href="http://doctoranna.ru/" target="_blank">Все о псориазе</a>
+<br><br>
+<script type="text/javascript">
+<!--
+var _acic={dataProvider:10};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www2.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script><br><br>
+<noindex>
+<!--LiveInternet logo--><a href="http://www.liveinternet.ru/click" target="_blank"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/logo.gif" title="LiveInternet: показано число посетителей за сегодня" border="0" height="15" width="88"></a><!--/LiveInternet-->
+
+
+</noindex>
+</div>
+					  </td>
+					</tr>
+				  </tbody></table>
+				</td>
+				<td width="2"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/spacer1.gif" height="18" width="2"></td>
+				<td bgcolor="#FFFFFF" valign="top" width="634"> 
+				  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tbody><tr> 
+					  <td><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/spacer1.gif" height="2" width="634"></td>
+					</tr>
+					<tr> 
+					  <td align="center">
+					  </td>
+					</tr>
+					<tr> 
+					  <td><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/spacer1.gif" height="2" width="634"></td>
+					</tr>
+				  </tbody></table>
+				  <table border="0" cellpadding="0" cellspacing="5" width="100%">
+					<tbody><tr> 
+					  <td>
+<div align="center">
+<script type="text/javascript"><!--
+google_ad_client = "pub-4585385300578666";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text_image";
+google_ad_channel ="2247381549";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/show_ads.js">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" frameborder="0" height="60" width="468"></iframe></ins></ins>
+</div>
+ 
+<h1 class="titl">Большие возможности</h1>
+<h2 class="titl">маленького PIC-контроллера</h2>
+
+<p class="зу"><em>Малые размеры и ограниченное число портов ввода-вывода
+ 8-выводных контроллеров PIC12Fxxx компании Microchip — не помеха при 
+создании довольно сложных устройств. Используя схемотические и 
+программные трюки, эти контроллеры можно применять в задачах, где 
+традиционно используются их стпршие братья.</em> </p>
+
+<p class="pe">Фирма Microchip продолжает разработку и производство 
+передовых продуктов, предоставляющих пользователю большую 
+функциональность и надежность. Новое семейство 8-выводных 
+Flash-микроконтроллеров найдет применение во многих отраслях 
+промышленности, в медицине и в бытовой технике.
+
+</p><p class="pe">Контроллеры PIC12F629/675 объединили все преимущества 
+архитектуры микроконтроллеров PICmicro и гибкость программной 
+Flash-памяти. При низкой цене и малых размерах новые контроллеры 
+обеспечивают функциональность и удобство использования, которые были 
+недоступны ранее. Основные особенности контроллеров серии PIC12Fxxx — 
+это диапазон питающих напряжений от 2 до 5,5 В, тактовая частота до 20 
+МГц, возможность включения калиброванного внутреннего RC-генератора на 4
+ МГц, внутренняя память данных EEPROM, аналоговый компаратор и источник 
+опорного напряжения, до 4 каналов 10-разрядного АЦП и до 6 портов 
+ввода-вывода. Наличие Flash-памяти программ и отличные средства 
+разработки, включая внутрисхемный отладчик ICD-2 (см.ChipNews №7'2002), а
+ также поддержка языка С позволяет в кратчайшие сроки создавать 
+программы и делает эти контроллеры идеальными для применения во многих 
+задачах.
+
+</p><p class="pe">Несмотря на малые размеры и ограниченное число портов 
+ввода-вывода, используя лишь схемотехнические и программные трюки, 
+8-выводные контроллеры PIC12Fxxx можно применять в задачах, где 
+традиционно используются их старшие братья.
+
+</p><p class="bl">Управление 6 светодиодами от 3 выводов
+
+</p><p class="pe">Высокий выходной ток (до 20 мА) портов ввода-вывода 
+микроконтроллеров PIC12Fxxx позволяет подключать светодиоды без 
+применения дополнительных драйверов. Управление свечением отдельных 
+светодиодов или их комбинаций может быть осуществлено с помощью 
+установки вывода микроконтроллера в «1 », «0 » или переключение его на 
+вход. Число диодов (D), которое может управляться независимо, 
+определяется числом используемых выводов микроконтроллера (GP) и 
+рассчитывается по следующей формуле:
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_f1.gif" alt="" border="0" height="48" width="156"></p>
+
+<p class="bl">Таблица 1. Соответствие состояния портов контроллера и включения светодиодов</p>
+           
+<table border="1" cellpadding="2" cellspacing="0">
+<tbody><tr>
+    <td>GP0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Z</td>
+    <td>Z</td>
+    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>GP1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>Z</td>
+    <td>Z</td>
+    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>GP2</td>
+    <td>Z</td>
+    <td>Z</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+</tr>
+<tr>
+    <td>VD1</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>VD2</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>VD3</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>VD4</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>VD5</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>VD6</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td><font face="Symbol">Д</font></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+</tbody></table>
+
+<p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_1.gif" alt="Схема управления 6 светодиодами" border="0" height="173" width="390"></p>
+
+
+<p class="bl">Определение 3 состояний одного входа
+
+</p><p class="pe">Вход микроконтроллера может иметь три состояния: 
+подключен к «1 », к «0 » или не подключен. Конденсатор заряжается или 
+разряжается в зависимости от состояния выходного порта GP и позволяет 
+определить все три состояния. Вход микроконтроллера находится в третьем 
+состоянии, если при выставлении уровня лог. «1 » на порт GP с этого 
+порта считывается «1 » и при выставлении лог. «0 » считывается «0 ».
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_2.gif" alt="Определение 3 состояний одного входа" border="0" height="214" width="388"></p>
+
+<p class="bl">Внешний RC-генератор с изменяемой частотой генерации
+
+</p><p class="pe">Частота внешнего RC-генератора определяется 
+параметрами внешней цепи, подключенной к выводу OSC1. Сопротивление этой
+ цепи можно изменять, управляя напряжением на выводе порта GP. Уровень 
+лог. «1 » на GP0 подключает резистор R2 параллельно R1, таким образом, 
+общее сопротивление цепи уменьшается, и частота генерации увеличивается.
+ Перевод состояния GP0 на вход увеличивает сопротивление RC-генератора, 
+тем самым уменьшая его частоту. Данный прием позволяет изменять частоту 
+тактирования микроконтроллера, изменять быстродействие системы, а 
+значит, изменять потребление микроконтроллера в зависимости от 
+выполняемой задачи.
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_3.gif" alt="Схема управления частотой генерации" border="0" height="236" width="339"></p>
+
+<p class="bl">Обработка нескольких кнопок с помощью одного входа
+
+</p><p class="pe">Микроконтроллеры PIC12Fxxx имеют аналоговый компаратор
+ с программируемым источником опорного напряжения, а также два таймера с
+ разрядностью 8 и 16 бит. Следующий пример показывает, как, используя 
+только один вход микроконтроллера с компаратором, а также один из 
+таймеров, можно определить нажатие одной из нескольких кнопок.
+
+</p><p class="pe">Время заряда конденсатора C1 (рис.4) определяется 
+сопротивлением резисторов, подключенных между цепью напряжения питания и
+ конденсатором. При изменении сопротивления изменяется время заряда. 
+Когда какая-либо кнопка нажата, напряжение питания подключается к 
+конденсатору через определенное количество резисторов и общее 
+сопротивление зарядной цепи уменьшается, уменьшая время заряда. 
+Использование таймера совместно с компаратором позволяет измерять время 
+заряда, а значит, и определять, какая из кнопок нажата.
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_4.gif" alt="Обработка нескольких кнопок с помощью одного входа" border="0" height="355" width="338"></p>
+
+<p class="pe">Программная последовательность:
+
+</p><ol>
+<li>Конфигурируем GP2 как выход с уровнем лог. «0 » для разрядки конденсатора.
+</li><li>Конфигурируем GP2 как один из входов компаратора, другой вывод 
+компаратора подключается к внутреннему источнику опорного напряжения.
+</li><li>Запускаем таймер и измеряем время до срабатывания компаратора.
+</li></ol>
+
+<p class="pe">Если измеренное время соответствует максимальному для 
+данной схемы, значит, ни одна из кнопок не нажата, и процедура опроса 
+клавиатуры повторяется. Когда какая-либо кнопка нажата, скорость 
+нарастания пилообразного сигнала увеличивается, а время срабатывания 
+компаратора уменьшается.
+
+</p><p class="bl">Обработка нескольких кнопок с помощью одного входа с выходом из режима SLEEP
+
+</p><p class="pe">Микроконтроллеры PIC12Fxxx имеют режим 
+микропотребления SLEEP. В этом режиме работа ядра останавливается, и 
+потребление контроллера может снизиться до 0,9 мкА. Работу предыдущего 
+примера можно дополнить функцией выхода из режима SLEEP при нажатии 
+какой-либо кнопки. Для реализации этой возможности необходимо 
+использовать дополнительный вывод микроконтроллера (рис.5).
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_5.gif" alt="Обработка нескольких кнопок с помощью одного входа с выходом из режима SLEEP" border="0" height="368" width="339"></p>
+
+<p class="pe">До входа в режим SLEEP нужно сконфигурировать вывод GP2 
+как выход с установленным уровнем лог. «1 », а GP1 — как вход с 
+возможностью прерывания по изменению состояния.
+
+</p><p class="pe">Подтягивающий резистор R1 удерживает GP1 в низком 
+состоянии. При нажатии кнопки вход GP1 переводится в высокое состояние 
+через GP2 и Vdd, что приводит к возникновению прерывания и выходу 
+микроконтроллера из SLEEP. После этого нужно записать в GP2 лог. «0 » 
+для разряда конденсатора C1 через резистор R2. Затем GP1 устанавливаем в
+ лог. «1 », а GP2 конфигурируем как вход компаратора для измерения 
+времени заряда конденсатора.
+
+</p><p class="pe">Программная последовательность:
+
+</p><ol>
+<li>GP1 соединяется с общим выводом кнопок.
+</li><li>Разрешить прерывание по изменению состояния порта GP1.
+</li><li>До включения режима SLEEP установить GP1 как вход, а GP2 как выход с лог. «1 ».
+</li><li>Если кнопка нажата, микроконтроллер выходит из SLEEP, установить в GP2 лог. «0 » для разряда конденсатора.
+</li><li>Установить GP1 в лог. «1 », определить, какая кнопка нажата, путем измерения времени заряда.
+</li></ol>
+
+<p class="bl">Клавиатура 4x4 с использованием одного входа
+
+</p><p class="pe">Микроконтроллер PIC12F675 имеет в своем составе 
+10-разрядный АЦП с временем измерения до 20 мкс. Наличие встроенного АЦП
+ позволяет реализовать клавиатуру с большим количеством кнопок, 
+используя всего один вход (см.рис.6). При правильном выборе значений 
+номиналов резисторов замыкание каждой из кнопок сформирует уникальное 
+напряжение, соответствующее именно этой кнопке. Измеряя напряжение Vout с
+ помощью АЦП, можно определить, какая именно кнопка нажата. Для 
+однозначности определения нажатой клавиши лучше использовать точные 
+резисторы. Если ни одна из кнопок не нажата, измеренное напряжение будет
+ около 0 В.
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_6.gif" alt="Клавиатура 4x4 с использованием одного входа" border="0" height="225" width="527"></p>
+
+<p class="bl">Питание устройства и обмен данными по одной линии
+
+</p><p class="pe">Один вывод микроконтроллера (МК1) может использоваться
+ для однонаправленной связи и как источник питания для другого (МК2). 
+Линия ввода-вывода микроконтроллера МК1 удерживается в высоком состоянии
+ подтягивающим резистором R1 и подает питание на МК2. Микроконтроллер 
+МК2, в свою очередь, может передавать данные по этой же линии с помощью 
+транзистора VT1. Конденсатор С1 фильтрует напряжение питания 
+передатчика, а диод предотвращает разряд конденсатора через линию связи,
+ пока она находится в состоянии лог. «0 ».
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_7.gif" alt="Питание и обмен данными по одной линии" border="0" height="224" width="522"></p>
+
+<p class="pe">Следует заметить, что напряжение питания передатчика меньше, чем приемника на величину падения на диоде.
+
+</p><p class="bl">Формирование высокого напряжения
+
+</p><p class="pe">Напряжение выше, чем напряжение питания, может быть 
+сформировано с использованием одного вывода микроконтроллера. В режиме 
+внешнего RC-генератора на выводе CLKOUT/OSC2 присутствует тактовая 
+частота, деленная на 4. Когда напряжение на выводе контроллера OSC2 
+равно нулю, конденсатор накачки С1 заряжается через диод VD1 (рис.8). 
+При напряжении на этом выводе, равном Vdd, заряд с С1 переносится через 
+диод VD2 на выходной конденсатор С2. В результате на выходе схемы 
+получаем удвоенное напряжение питания минус падение на двух диодах.
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_8.gif" alt="Удвоитель напряжения на переключаемых конденсаторах" border="0" height="225" width="520"></p>
+
+<p class="pe">Этот же результат можно получить с помощью любого переключаемого вывода микроконтроллера или вывода ШИМ.
+
+</p><p class="bl">Схема автоматического поддержания питания
+
+</p><p class="pe">Используя схему на переключаемых конденсаторах из 
+предыдущего примера, можно создать устройство, поддерживающее свое 
+питание (рис.9).
+
+</p><p align="center"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/106_9.gif" alt="Схема автоматического отключения питания" border="0" height="177" width="527"></p>
+
+<p class="pe">В исходном состоянии транзистор VT1 закрыт, напряжение 
+питания контроллера Vdd равно нулю. При нажатии на кнопку напряжение 
+источника питания Vbat подается на вывод питания микроконтроллера, и на 
+выводе CLKOUT/OSC2 в режиме внешнего RC-генератора возникает генерация. 
+Напряжение, вырабатываемое удвоителем, открывает транзистор VT1, 
+соединяя шину Vbat и Vdd. Таким образом, схема начинает поддерживать 
+свое питание.
+
+</p><p class="pe">Для выключения питания контроллера нужно выполнить 
+инструкцию SLEEP, которая остановит тактовый генератор, что в свою 
+очередь выключит питание микроконтроллера. Данный прием позволяет 
+программно выключать питание устройства.
+
+</p><p class="pe">Преимущества:
+
+</p><ul>
+<li>практически нулевое потребление тока;
+</li><li>низкая стоимость (используется n-канальный полевой транзистор);
+</li><li>высокая надежность;
+</li><li>не требуется дополнительных выводов микроконтроллера.
+</li></ul>
+
+<p class="pe"><em>Продолжение следует</em>
+
+</p><p align="right"><strong><a href="mailto:microchip@gamma.spb.ru">Илья Афанасьев</a></strong></p>
+
+<hr>
+<p class="sale"><a href="http://www.baltia-tour.ru/">отдых в Прибалтике</a>
+</p><hr>
+<div align="center">
+<script type="text/javascript"><!--
+google_ad_client = "pub-4585385300578666";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text_image";
+google_ad_channel ="2247381549";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/show_ads.js">
+</script><ins id="aswift_2_expand" style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" frameborder="0" height="60" width="468"></iframe></ins></ins>
+</div>
+						</td>
+					</tr>
+				  </tbody></table>
+				  <table border="0" cellpadding="0" cellspacing="4" width="100%">
+					<tbody><tr> 
+					  <td><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/spacer1.gif" height="2" width="626"></td>
+					</tr>
+					<tr> 
+					  <td> 
+<p class="pe">Статьи по: <a href="http://www.compitech.ru/html.cgi/rubrikator/micros.htm">ARM PIC AVR MSP430</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/processor.htm">DSP</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/priem.htm">RF компоненты</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/trans.htm">Преобразование и коммутация речевых сигналов</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/analog.htm">Аналоговая техника, ADC, DAC</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/logic.htm">PLD, FPGA</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/force.htm">MOSFET, IGBT</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/discrete.htm">Дискретные полупрoводниковые приборы. Sensor</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/design.htm">Проектирование и технология</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/opto.htm">LCD, LCM, LED. Оптоэлектроника и ВОЛС</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/distr.htm">Дистрибуция электронных компонентов</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/obor.htm">Оборудование и измерительная техника</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/passive.htm">Пассивные элементы и коммутационные устройства</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/sistems.htm">Системы идентификации и защиты информации</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/korpus.htm">Корпуса</a>, <a href="http://www.compitech.ru/html.cgi/rubrikator/plati.htm">Печатные платы</a>
+					  </p></td>
+					</tr>
+					<tr> 
+					  <td><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/spacer1.gif" height="2" width="626"></td>
+					</tr>
+				  </tbody></table>
+				</td>
+			  </tr>
+			</tbody></table>
+		  </td>
+		</tr>
+		<tr> 
+		  <td width="768"> 
+			<table border="0" cellpadding="0" cellspacing="0" width="776">
+			  <tbody><tr> 
+				<td bgcolor="#9C4B4B" width="140"> 
+				  <p class="data" align="left"><a href="mailto:web@chipdoc.ru"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/email.gif" border="0" height="9" hspace="5" width="9"></a><a href="#top"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/top.gif" border="0" height="9" width="9"></a></p>
+				</td>
+				<td bgcolor="#9C4B4B" width="634"> 
+				  <p class="copy" align="right">Design by <noindex><a href="http://www.gaw.ru/" target="_blank"><font color="#FFFFFF">GAW.RU<img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/copy.gif" border="0" height="9" hspace="5" width="9"></font></a></noindex></p><font color="#FFFFFF">
+				</font></td>
+			  </tr>
+			</tbody></table>
+		  </td>
+		</tr>
+	  </tbody></table>
+	</td>
+	<td bgcolor="#4C5A66" width="2"><img src="%D0%91%D0%BE%D0%BB%D1%8C%D1%88%D0%B8%D0%B5%20%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20%D0%BC%D0%B0%D0%BB%D0%B5%D0%BD%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE%20PIC-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B0_files/spacer.gif" height="2" width="2"></td>
+  </tr>
+</tbody></table>
+
+
+
+
+
+</a></body></html>

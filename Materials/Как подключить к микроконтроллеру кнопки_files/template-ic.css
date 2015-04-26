@@ -1,0 +1,135 @@
+
+.Sheet
+{
+	width: 90%;
+	min-width: 700px;
+	max-width: 1500px;
+}
+
+div.Header
+{
+	width: 100%;
+}
+
+div.Header-jpeg
+{
+	width: 100%;
+}
+.logo
+{
+	width: 100%;
+}
+.contentLayout
+{
+	width: 100%;
+}
+.Footer
+{
+	width: 100%;
+}
+
+.Footer .Footer-background
+{
+	width: 100%;
+	background-repeat: repeat-x;
+}
+
+.contentLayout .sidebar1
+{
+	width: 25%;
+}
+
+.contentLayout .content
+{
+	width: 74%;
+}
+
+.PostHeader {
+	padding-left: 5px;
+}
+
+.icTop {
+	height: 20px;
+	width: 100%;
+	background-image:url(../images/Sheet-c.png);
+}
+
+.icTop .Post {
+	margin:0;
+	width: 80%;
+	background-image:url(http://www.i-cons.ch/images/blank.png);
+	background-repeat: no-repeat;	
+}
+
+.icTop .Post .Post-body {
+	padding: 0;
+}
+
+.icTop .Post .Post-body span.pathway {
+	margin: 1px 5px;
+}
+
+.icTop a:visited, .icTop a.visited {
+color:#5C603E;
+}
+
+.icTop a:hover, .icTop a.hover {
+color:#BA4B1C;
+text-decoration:underline;
+}
+
+.icSearch {
+	float: right;
+	margin-right: 5px;
+	width: 150px;
+}
+
+div.search input {
+	margin: 1px;
+	font-size: 11px;
+}
+
+.breadcrumbs {
+	padding: 2px;
+	margin: 0;
+}
+
+.icMessage {
+	margin: 20px;
+
+}
+
+.icMessage table {
+	background-color:#C6D534;
+	border:1px dashed #BDCF7D;
+	padding:1px;
+	width: 100%;
+}
+
+.PostContent .modifydate {
+	color:#533603;
+	font-family:Verdana,Geneva,Arial,Helvetica,Sans-Serif;
+	font-size:9px;
+	font-style:normal;
+	font-weight:normal;
+	text-align:center;
+}
+
+.BlockContent-body {
+	padding:0 5px 5px;
+}
+
+input {
+	background-color: #EEEFE6;
+	color:#533603;
+}
+
+.PostContent td.sectiontableheader {
+	background-image:url(../images/Sheet-c.png);
+	border-right: none;
+}
+
+.Block-body {
+	background-color: #E3E5D7;
+
+}
